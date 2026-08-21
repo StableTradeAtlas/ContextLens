@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/raw/
+data/processed/*
+!data/processed/shlibrary_official_snapshot.json
+data/index/
+data/logs/
+*.sqlite
+*.db
+node_modules/

@@ -1,0 +1,43 @@
+{
+  "id": "/assets/data/princeton-1943-georef.json",
+  "type": "AnnotationPage",
+  "@context": "http://www.w3.org/ns/anno.jsonld",
+  "items": [
+    {
+      "id": "/assets/data/princeton-1943-georef.json#map",
+      "type": "Annotation",
+      "@context": [
+        "http://iiif.io/api/extension/georef/1/context.json",
+        "http://iiif.io/api/presentation/3/context.json"
+      ],
+      "motivation": "georeferencing",
+      "target": {
+        "type": "SpecificResource",
+        "source": {
+          "id": "https://iiif-cloud.princeton.edu/iiif/2/42%2F8a%2F93%2F428a930342fb4c36ae9b4ecdc57eae37%2Fintermediate_file",
+          "type": "ImageService2",
+          "height": 10957,
+          "width": 16539,
+          "provider": [{
+            "label": {"en": ["Princeton University Library"]},
+            "homepage": [{"id": "https://geodiscovery.uwm.edu/catalog/princeton-8623j0184"}]
+          }]
+        },
+        "selector": {
+          "type": "SvgSelector",
+          "value": "<svg width=\"16539\" height=\"10957\"><polygon points=\"0,0 16539,0 16539,10957 0,10957\" /></svg>"
+        }
+      },
+      "body": {
+        "type": "FeatureCollection",
+        "transformation": {"type": "polynomial", "options": {"order": 1}},
+        "features": [
+          {"type": "Feature", "properties": {"resourceCoords": [0,0]}, "geometry": {"type": "Point", "coordinates": [121.35,31.27]}},
+          {"type": "Feature", "properties": {"resourceCoords": [16539,0]}, "geometry": {"type": "Point", "coordinates": [121.57,31.27]}},
+          {"type": "Feature", "properties": {"resourceCoords": [16539,10957]}, "geometry": {"type": "Point", "coordinates": [121.57,31.12]}},
+          {"type": "Feature", "properties": {"resourceCoords": [0,10957]}, "geometry": {"type": "Point", "coordinates": [121.35,31.12]}}
+        ]
+      }
+    }
+  ]
+}

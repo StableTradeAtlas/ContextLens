@@ -1,0 +1,10 @@
+{
+  "name": "文脉镜 · 城市记忆虫洞",
+  "short_name": "文脉镜",
+  "description": "从一条上海旧址出发，沿时间轴重建道路、建筑、事件与来源。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f1ede3",
+  "theme_color": "#10283b",
+  "lang": "zh-CN"
+}
