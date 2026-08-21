@@ -1,129 +1,257 @@
-# 文脉镜 ContextLens · 我的上海旧址
+<div align="center">
 
-文脉镜是一个面向上海图书馆开放数据竞赛的本地优先历史地点智能体。它从一条上海旧址出发，完成旧今地名消歧，沿时间轴连接建筑、机构、人物和事件，并让每条历史结论回到可打开的来源。
+# 文脉镜 ContextLens
 
-旗舰体验是“城市记忆虫洞”：地图与年代滑杆位于结果页核心；来源坐标和范围定位使用不同表达；用户的一句话记忆只在浏览器中参与记忆卡生成，不进入 API、SQLite、日志或模型。
+### A Verifiable Shanghai Address Dossier
 
-## 核心能力
+Turn one historical Shanghai address into four source-backed answers:
+**what it was called, what happened there, where it is today, and which record supports every claim.**
 
-- 20 秒时空导演：默认 20 秒、六个证据绑定章节；可切换 30/45 秒深看。用户拖动地图、年份或时间裂缝后立即暂停并交还控制权，可继续、重播或跳章。
-- 地址解析：分离道路、门牌和年代，保留多候选供用户确认。
-- 上图五库资料舱：道路与旧名、上海优秀历史建筑、上海历史文化事件、人名规范库和上海年华机构名录共同组成“地点—事件—人物—机构”关系网；每条边保留证据 ID。
-- 人物/机构消歧：事件详情中的 `personList`、`organizationList` 与建筑人物关系继续回查规范实体；同名人物不唯一时只显示“同名待消歧”，不误贴传记。
-- 时空地图：本地固定版 MapLibre GL JS、OpenHistoricalMap 任意年份矢量层、OpenFreeMap Liberty 现代 3D 底图及离线上海轮廓降级。
-- 任意年份：1600 年至当前年份可滑动、键入或自动播放；路名、事件、建筑和时代语境同步变化。
-- 今昔镜片：历史矢量与今日三维建筑分屏联动，并可拖动分界线；不把现代底图伪装成历史原图。
-- 地图档案：索引 1810—2005 年的 20 幅跨时代原始地图，并精选 1855、1916、1943、1954 四幅公共原图进入显微镜；未通过残差误差审计的配准草案只能并排查看。
-- 地标时间展：海关大楼、和平饭店、东方明珠、金茂大厦、环球金融中心和上海中心随建成年代出现；地图体量和按需加载的 Three.js 详情均标 A/B/C 重建等级，不冒充写实或测绘复原。
-- 轻互动：原图寻路、地名接力、来源追踪、任意 A/B 年份变化清单、三条探索支线、证据约束问答和仅存当前会话的档案印章。
-- 动态记忆卡：优先在浏览器生成 8 秒 WebM，不支持时回退 PNG；个人记忆与核验事实分区合成。
-- 证据门控：地点实体与历史关系必须同时命中才可成为直接支撑；综合结论至少绑定两条证据。
-- 可选 DeepSeek 档案解读：默认不运行，只有用户点击确认后才调用一次；服务器只发送当前地点的公开证据摘要、关系和证据 ID，个人记忆、完整请求地址与前端证据包均不上传。
-- 真实任务进度：`queued / resolving / fetching / linking / auditing / complete / failed`。
-- 离线地点集：从 4 组扩大到 22 组、43 个精选节点。除霞飞路、外滩、南京路等首批地点外，新增瑞金二路、重庆南路、陕西南路、华山路、安福路、复兴西路、巨鹿路、常熟路、新乐路、黄陂南路、长阳路、延安中路，并支持海格路、亨利路、华德路、中正中路等旧名反查。
-- PWA 离线外壳：缓存应用壳、公开元数据、许可信息和低模；不缓存 API 请求，也不打包受限高清原图。
-- 研究工具：旧版人物、地点、事件、文献、城市记忆、家族线索和上海与世界专题保留在“研究方法 → 更多研究工具”。
+<p>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-17384E?style=for-the-badge&logo=python&logoColor=white">
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-7-2F7B73?style=for-the-badge&logo=typescript&logoColor=white">
+  <img alt="Shanghai Library data" src="https://img.shields.io/badge/Shanghai_Library-Official_Data-B64B38?style=for-the-badge">
+  <img alt="Demo records" src="https://img.shields.io/badge/Demo_Records-0-C59A4A?style=for-the-badge">
+</p>
 
-## 快速启动
+<p>
+  <a href="#-quick-start">Quick Start</a> ·
+  <a href="#-the-four-answer-workflow">Product</a> ·
+  <a href="#-evidence-and-data">Data</a> ·
+  <a href="#-architecture">Architecture</a> ·
+  <a href="#-validation">Validation</a>
+</p>
 
-### 发给老师后的双击启动
+</div>
 
-解压 ZIP 后进入项目文件夹：
+---
 
-- Windows：双击 `START_HERE_WINDOWS.bat`
-- macOS：双击 `START_HERE_MAC.command`
-- Linux：双击或运行 `START_HERE_LINUX.sh`
+## Why ContextLens?
 
-脚本会启动本地服务并自动打开 `http://127.0.0.1:8765`。演示只要求 Python 3.10 或更高版本，不需要安装 Node.js，也不需要上海图书馆或 DeepSeek API 密钥。停止服务时关闭启动窗口，或在窗口中按 `Ctrl+C`。
+Historical addresses are difficult to investigate. Street names change, house numbers become ambiguous, archival maps are imperfectly registered, and attractive narratives can easily outrun their evidence.
 
-macOS 若首次双击提示无法打开，可右键该文件选择“打开”；也可在项目目录的终端执行：
+ContextLens treats an address as a **historical entity**, not merely a search phrase. It resolves old and modern names, connects directly relevant events and buildings, preserves uncertainty, and returns every important conclusion to an openable source.
+
+> **ContextLens does not invent a story about an address. It compiles a dossier that can be questioned, checked, printed, and reused.**
+
+## ✦ The Four-Answer Workflow
+
+| Step | Question | What ContextLens returns |
+|:---:|---|---|
+| **01** | **What was this address called?** | Historical and modern street identities, name periods, ambiguity candidates, and resolution confidence |
+| **02** | **What happened here?** | Location-specific events and buildings arranged by time, with uncertain dates kept visibly unresolved |
+| **03** | **Where is it today?** | A real archival scan beside a contemporary map—without pretending an unaudited overlay is precise |
+| **04** | **What supports the answer?** | A source receipt and passport for every evidence item: provider, dataset, date, evidence ID, normalization, and original URI |
+
+### Three deliberately narrow questions
+
+The interface does not begin with a vague chatbot. Questions are generated from the current dossier:
+
+- Why did this road change names?
+- What happened at this house number?
+- What is still unknown?
+
+Answers use only the active address evidence. Unsupported explanations remain unknown.
+
+## ✦ Flagship Investigations
+
+### `436 Avenue Joffre · 1930s`
+
+Resolves Avenue Joffre to the present-day Huaihai Middle Road area, reconstructs the verified road-name sequence, and connects the 1934 Kangjian Bookstore event to its Shanghai Library source record.
+
+### `20 The Bund · 1930s`
+
+Connects a Bund address to buildings, institutions, and the changing urban waterfront while preserving the difference between a verified coordinate and a broader location range.
+
+### `Nanjing Road department store · 1940s`
+
+Demonstrates ambiguity handling: ContextLens returns East and West Nanjing Road candidates instead of silently selecting the wrong place.
+
+### Negative control: `9999 Mars Road`
+
+Returns an unresolved result and asks for better evidence. It does **not** generate historical facts.
+
+## ✦ Evidence and Data
+
+The repository includes a reproducible, credential-free snapshot containing:
+
+<div align="center">
+
+| Official snapshot | Preserved responses | Demo records |
+|:---:|:---:|:---:|
+| **154 records** | **93 responses** | **0** |
+
+</div>
+
+Primary Shanghai Library data families include:
+
+- Shanghai road and place-name entities
+- Shanghai historical and cultural events
+- Shanghai outstanding historical buildings
+- Person authority records
+- Shanghai yearbook organization records
+
+Each normalized record retains a lineage object containing the provider, dataset, query term, retrieval time, official URI, payload hash, normalization version, evidence ID, and source mode.
+
+Auxiliary visual sources are kept clearly separate:
+
+- **Princeton University Library / AGSL** — 1943 *Plan of Shanghai* public IIIF image
+- **OpenFreeMap / OpenMapTiles / OpenStreetMap** — contemporary geographic orientation
+- **Virtual Shanghai and Wikimedia Commons** — historical-map catalogue metadata where applicable
+
+Historical scans are never presented as exact house-number overlays unless their registration has passed an explicit accuracy audit.
+
+## ✦ Product Principles
+
+```mermaid
+flowchart LR
+    A["Historical address"] --> B["Name and era resolution"]
+    B --> C["Place-specific retrieval"]
+    C --> D["Claim and uncertainty audit"]
+    D --> E["Four-part address dossier"]
+    E --> F["Openable source passports"]
+```
+
+1. **Evidence before narrative** — source records appear before interpretation.
+2. **Unknown means unknown** — missing dates and approximate locations stay visible.
+3. **No false precision** — archival scans and present-day maps are read side by side.
+4. **Official and auxiliary sources remain distinct** — provenance is never flattened.
+5. **One complete public task** — the product optimizes for investigating an address, not for displaying every possible research tool.
+
+## ✦ Quick Start
+
+### One-click local launch
+
+Requirements: **Python 3.10 or newer**. The packaged product does not require a Shanghai Library API key, a model key, or Node.js.
+
+| Platform | Launch method |
+|---|---|
+| macOS | Double-click `START_HERE_MAC.command` |
+| Windows | Double-click `START_HERE_WINDOWS.bat` |
+| Linux | Run `./START_HERE_LINUX.sh` |
+
+Or start it from a terminal:
 
 ```bash
+git clone https://github.com/StableTradeAtlas/ContextLens.git
+cd ContextLens
 ./start-contextlens
 ```
 
-Windows 也可以在项目目录的命令提示符中执行：
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Stop the service with `Ctrl+C`.
 
-```bat
-py -3 start.py
-```
-
-交付包已包含构建后的前端、SQLite 索引、离线原始数据以及旧版研究界面需要的地图运行时资源。开发者如修改了 `frontend/` 源码，可先执行 `npm ci` 和 `npm run build`；普通演示无需执行这些命令。
-
-### 开发启动
-
-终端位于项目目录时：
-
-```bash
-./start-contextlens
-```
-
-它会检查前端构建并打开本地页面；再次运行时会复用现有服务。也可以使用 npm 的同义命令 `npm start`。
-
-自定义端口：
+Use another port if needed:
 
 ```bash
 CONTEXTLENS_PORT=8777 ./start-contextlens
 ```
 
-## 旗舰验收案例
+### Frontend development
 
-1. `霞飞路436号 / 1930年代`：解析为霞飞路（今淮海中路一带），展示 1934 年康健书局事件及附近历史建筑；可键入任意年份，并依次看到西江路、宝昌路、霞飞路、泰山路、林森中路和淮海中路的已核对名称阶段。
-2. `南京路百货公司 / 1940年代`：返回南京东路和南京西路候选，商业语境优先推荐南京东路。
-3. `火星路9999号`：返回未解析状态和补充调查建议，不生成历史事实。
-4. `贝当路311号`、`静安寺路1025弄`、`北四川路85号`、`福州路390号`、`窦乐安路59号`、`施高塔路85弄`：验证新增旧名反查和官方历史建筑坐标。
-5. 断网时：22 组精选地点继续返回公开元数据与来源 URI；霞飞路保留完整20秒电影级旗舰流程。
+Node.js is required only when editing the frontend:
 
-## API
+```bash
+npm ci
+npm run check
+npm run build
+./start-contextlens
+```
 
-- `POST /api/place/resolve`：输入 `address`、`era_hint`，返回地点候选。
-- `POST /api/investigations`：输入选定的 `candidate`、公开地址和年代，创建调查。
-- `GET /api/investigations/{id}`：返回真实阶段、进度、部分状态或最终档案。
-- `POST /api/investigations/{id}/interpret`：用户主动选择后，对服务器内已有的公开证据做一次 DeepSeek 证据约束解读。
-- `POST /api/ask`：兼容原有研究问答接口。
+## ✦ Architecture
 
-地点调查返回 `PlaceCandidate`、GeoJSON `HistoricalFeature`、`HistoricalClaim`、`archive_network`、证据卡、时间线、地图范围、质量警告和调查回放。
+```text
+ContextLens/
+├── frontend/src/          # Four-part dossier interface
+├── app/
+│   ├── place_investigation.py  # Address resolution and investigation pipeline
+│   ├── official_snapshot.py    # Reproducible Shanghai Library snapshot builder
+│   ├── storage.py              # Local evidence index
+│   ├── historical_maps.py      # Archival-map catalogue and source boundaries
+│   ├── agent.py                # Evidence-grounded research tools
+│   └── memory_web.py           # Local HTTP application and API
+├── data/processed/
+│   └── shlibrary_official_snapshot.json
+├── tests/                 # Address, evidence, privacy, and regression tests
+└── start.py               # Cross-platform application entry point
+```
 
-## 上海图书馆 API
+The primary investigation lifecycle is:
 
-从示例创建本地环境文件：
+```text
+queued → resolving → fetching → linking → auditing → complete
+```
+
+### Core endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/api/health` | Evidence coverage and service health |
+| `POST` | `/api/place/resolve` | Resolve an address into one or more place candidates |
+| `POST` | `/api/investigations` | Start an evidence-bound address investigation |
+| `GET` | `/api/investigations/{id}` | Read progress or the completed dossier |
+| `POST` | `/api/ask` | Access the secondary evidence-research interface |
+
+## ✦ Optional Live Data
+
+The packaged official snapshot is sufficient for the reviewed experience. For authorized development against live services:
 
 ```bash
 cp .env.example .env
 ```
 
-只在 `.env` 中配置：
+Then configure locally:
 
-```text
-SHLIB_API_KEY=...
-DEEPSEEK_API_KEY=... # 可选；没有它不影响地图与上图资料浏览
+```dotenv
+SHLIB_API_KEY=your_key_here
+DEEPSEEK_API_KEY=optional_key_here
 ```
 
-客户端使用系统 CA，并在可用时叠加 `certifi`，始终保持证书验证；请求间隔默认 2.05 秒。成功响应会进入不含密钥的本地缓存；网络超时、限流或官方接口暂时不可用时，可读取最后一次已验证缓存，再降级到精选公开案例。
+`.env`, API caches, logs, SQLite indexes, and local runtime data are excluded from Git. API keys never enter source URLs, cache filenames, frontend code, or audit logs.
 
-## 隐私与证据边界
-
-- 个人记忆不出浏览器，不进入任何请求体。
-- DeepSeek 不逐条自动处理资料；必须由用户在资料舱中主动点击，且模型返回的证据 ID 会再次经过白名单校验。
-- 查询日志只保存不可逆查询哈希、模式、命中数、耗时或错误类型。
-- API 密钥不进入前端、缓存文件名、来源链接或日志。
-- 缺少坐标时返回范围或待定位，不生成虚假精确图钉。
-- 原图控制点未经过人工残差审计时保持 `review_only`，不覆盖现代道路。
-- 不实现自动批量地理配准、完整街头 AR、GPS 追踪或写实历史城市复原。
-- 未找到直接证据时明确返回证据空白，不用无关材料补数量。
-- 在线地理编码未自动启用，也不用于地址自动补全。
-- 本项目是公共历史知识原型，不提供投资、法律或支付实施建议。
-
-## 测试
+## ✦ Validation
 
 ```bash
-pytest -q
-python3 -m py_compile app/*.py tests/*.py
 npm run check
 npm run build
-npm audit --omit=dev
+python3 tests/test_place_investigation.py
+python3 tests/test_agent.py
 ```
 
-覆盖官方字段归一化、年份/门牌识别、旧名消歧、多候选、负面案例、关系门控、证据删除降级、TLS、缓存降级、隐私日志和异步任务状态。
+Current verified state:
 
-更完整的竞品与定位分析见 [docs/competitive_scan.md](docs/competitive_scan.md)。
+- TypeScript validation: **passed**
+- Production frontend build: **passed**
+- Place-investigation regression suite: **passed**
+- Agent regression suite: **14/14 passed**
+- Official snapshot records: **154**
+- Demo records in the normal product path: **0**
+
+The tests cover old-name resolution, ambiguity, negative cases, source lineage, relationship gating, network failure, privacy-safe audit logs, TLS verification, asynchronous investigation states, and evidence-bound UI contracts.
+
+## ✦ Privacy and Research Boundaries
+
+- ContextLens does not request GPS, camera, microphone, or browser-history access.
+- Query audit logs store irreversible hashes rather than raw addresses.
+- Missing coordinates remain approximate or unresolved.
+- Unverified archival registration is never presented as precise georeferencing.
+- An absent source is never replaced with an unrelated record merely to increase evidence count.
+- Optional model assistance is not required for the core product.
+- ContextLens is a public-history research prototype, not legal, financial, or regulatory advice.
+
+## ✦ Competition Direction
+
+ContextLens is being developed for the Shanghai Library Open Data Contest around one proposition:
+
+> **A historical address should become a replayable, contestable, and traceable investigation—not an AI-generated anecdote.**
+
+The product is designed to demonstrate innovation, feasibility, technical depth, interaction quality, and meaningful use of open data through one complete and understandable public workflow.
+
+---
+
+<div align="center">
+
+**ContextLens · Shanghai Address Dossier**
+
+Built with respect for historical uncertainty, open data, and the people who will verify the story.
+
+</div>
