@@ -185,6 +185,22 @@ def test_expanded_curated_place_coverage_uses_official_entities() -> None:
     assert merged[0].name_periods[0]["name"] == "海格路"
 
 
+def test_snapshot_driven_route_breadth() -> None:
+    """A broad official road set must complete offline, not just one demo route."""
+    full_routes = [
+        "华山路", "南京西路", "四川北路", "多伦路", "安福路", "复兴西路",
+        "巨鹿路", "常熟路", "延安中路", "新乐路", "福州路", "衡山路",
+        "重庆南路", "长阳路", "陕西南路", "黄陂南路", "南昌路", "绍兴路",
+        "茂名南路", "江西中路", "复兴中路",
+    ]
+    for road in full_routes:
+        resolution = resolve_place(road, allow_live=False)
+        assert resolution["status"] == "resolved", road
+        result = investigate_address(resolution["candidates"][0], address=road, allow_live=False)
+        assert result["timeline"], road
+        assert len(result["evidence"]) >= 2, road
+
+
 def test_director_maps_models_and_interactions_stay_evidence_bounded() -> None:
     candidate = FALLBACK_CANDIDATES["霞飞路"][0]
     experience = build_experience(candidate, FALLBACK_FEATURES["霞飞路"])
@@ -230,11 +246,12 @@ def test_frontend_privacy_and_explicit_scope_boundaries() -> None:
     assert "memory" not in investigation_call
     assert "navigator.geolocation" not in source
     assert "getUserMedia" not in source
-    assert "不再把未完成配准的原图伪装成精确叠加" in source
-    assert "历史原图存在配准误差" in source
-    assert "没有来源支撑的内容不会补写为故事" in source
-    assert "SOURCE PASSPORT" in source
-    assert "逐条可打开" in source
+    assert 'api("/api/catalog")' in source
+    assert "Filter the completed street dossiers" in source
+    assert "年代待考" not in source
+    assert "SOURCE PASSPORT" not in source
+    assert "eraInput" not in source
+    assert "supporting source" in source
     assert "/interpret" not in source
 
 
@@ -403,6 +420,7 @@ if __name__ == "__main__":
     test_arbitrary_year_map_catalog_and_landmark_models()
     test_nanjing_ambiguity_and_negative_case()
     test_expanded_curated_place_coverage_uses_official_entities()
+    test_snapshot_driven_route_breadth()
     test_director_maps_models_and_interactions_stay_evidence_bounded()
     test_frontend_privacy_and_explicit_scope_boundaries()
     test_relation_gate_and_evidence_deletion_downgrade()
