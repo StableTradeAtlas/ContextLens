@@ -7,6 +7,8 @@ export interface Candidate {
   name_periods: Array<{ name: string; from_year: number | null; to_year: number | null }>;
   confidence: number;
   match_reason: string;
+  source_uri?: string;
+  official_uri?: string;
 }
 
 export interface StoryChapter {
@@ -96,6 +98,11 @@ export interface InvestigationResult {
   map: Record<string, any>;
   quality: Record<string, any>;
   experience: Experience;
+  media: Array<{
+    asset_id: string; roads: string[]; kind: string; year: number | null; title: string; title_en?: string;
+    description: string; description_en?: string; image_url: string; source_url: string; provider: string;
+    creator: string; license: string; attribution: string; rights_status: string; evidence_role: string;
+  }>;
   archive_network: {
     stats: Record<string, number>;
     datasets: Array<{ dataset_id: string; title: string; available_label: string; count: number; active: boolean }>;

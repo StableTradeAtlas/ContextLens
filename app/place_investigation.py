@@ -12,7 +12,9 @@ from typing import Any, Callable
 from app.config import get_settings
 from app.historical_maps import build_experience, historical_map_payload
 from app.library_client import ShanghaiLibraryClient, canonical_source_uri
+from app.media_registry import media_for_street
 from app.models import HistoricalClaim, HistoricalFeature, PlaceCandidate
+from app.official_snapshot import load_snapshot
 
 
 PLACE_TOKEN_RE = re.compile(r"([\u4e00-\u9fffA-Za-z0-9·]{1,18}(?:中路|东路|西路|南路|北路|大道|公路|马路|路|街|弄|里|浜|桥|码头|外滩|广场))")
@@ -589,6 +591,167 @@ for _road, _feature_id, _title, _description, _architecture_id, _lon, _lat, _add
     )
 
 
+# Additional dated public records used only where an authoritative municipal
+# or district source supplies the missing chronology. They complement rather
+# than replace the Shanghai Library records already attached to each street.
+_PUBLIC_SUPPLEMENTAL_FEATURES = [
+    ("多伦路", "road-duolun-opened-1911", "多伦路始建", "虹口区政府资料记载道路始建于1911年，原名窦乐安路；本条用于说明道路形成时间。", "https://www.shhk.gov.cn/xwzx/002003/20240226/c159f769-0d8b-48d5-a8a9-d7fc432cfdad.html", "上海市虹口区人民政府", 1911, "多伦路"),
+    ("四川北路", "building-yonganli-1925", "永安里前期住宅竣工", "虹口区政府资料记载永安里靠四川北路一侧的前期住宅于1925年竣工。", "https://www.shhk.gov.cn/xwzx/002003/20220222/ab5560d3-0c85-405c-9051-e13dc33fd513.html", "上海市虹口区人民政府", 1925, "四川北路1953弄"),
+    ("长阳路", "building-tilanqiao-1903", "华德路监狱启用", "《上海通志》记载华德路监狱于1903年启用，即后来的提篮桥监狱。", "https://www.shanghai.gov.cn/shanghai/newshanghai/%E4%B8%8A%E6%B5%B7%E9%80%9A%E5%BF%97.pdf", "上海市人民政府·上海通志", 1903, "今长阳路147号"),
+    ("外滩", "building-bund-signal-1907", "外滩信号台建成", "上海市文物保护单位名录记载外滩信号台位于中山东二路1号甲，年代为1907年。", "https://www.shanghai.gov.cn/newshanghai2018/zfgb/201410/ZFGB1410.pdf", "上海市人民政府", 1907, "中山东二路1号甲"),
+]
+
+for _road, _feature_id, _title, _description, _uri, _provider, _year, _address in _PUBLIC_SUPPLEMENTAL_FEATURES:
+    FALLBACK_FEATURES.setdefault(_road, []).append(
+        _feature(_feature_id, "event", _title, _description, _uri, _provider, start_year=_year, address=_address, spatial_precision="street_address")
+    )
+
+
+def _snapshot_road_name(record: Any) -> str:
+    raw = record.raw or {}
+    return clean_text(raw.get("nameChs") or raw.get("name") or raw.get("label") or record.title.split("；", 1)[0])
+
+
+def _add_snapshot_backed_routes() -> None:
+    """Expand the credential-free product from the complete packaged snapshot.
+
+    Curated candidates remain authoritative where present. The snapshot layer
+    adds every other road entity plus streets represented by official building
+    or event records, so a broad set of inputs completes the same investigation
+    route without pretending that every road has equal historical depth.
+    """
+    records = load_snapshot()
+    road_records: dict[str, Any] = {}
+    modern_to_old: dict[str, list[tuple[str, Any]]] = {}
+    for record in records:
+        if record.dataset != "roads_place_names":
+            continue
+        name = _snapshot_road_name(record)
+        if not name:
+            continue
+        road_records[name] = record
+        related = clean_text((record.raw or {}).get("historyOfName") or (record.raw or {}).get("nameAfter"))
+        if related:
+            modern_to_old.setdefault(related, []).append((name, record))
+
+    for name, record in road_records.items():
+        if name in FALLBACK_CANDIDATES:
+            continue
+        raw = record.raw or {}
+        related = clean_text(raw.get("historyOfName") or raw.get("nameAfter"))
+        # When a curated modern-road identity already contains this old name,
+        # let alias resolution return the modern canonical street rather than a
+        # second standalone candidate for the obsolete name.
+        if related and related in FALLBACK_CANDIDATES:
+            continue
+        valid_from, valid_to = parse_temporal_value(raw.get("temporalValue"))
+        periods = [{"name": name, "from_year": valid_from, "to_year": valid_to, "source_uri": record.source_uri}]
+        if related and related in road_records:
+            related_record = road_records[related]
+            related_from, related_to = parse_temporal_value((related_record.raw or {}).get("temporalValue"))
+            periods.append({"name": related, "from_year": related_from, "to_year": related_to, "source_uri": related_record.source_uri})
+        FALLBACK_CANDIDATES[name] = [
+            PlaceCandidate(
+                candidate_id=stable_id("snapshot-road", record.source_uri or name),
+                canonical_name=name,
+                display_name=f"{name}{f' · 后改为{related}' if related else ''}",
+                historical_names=[name] if valid_to else [],
+                modern_names=[related] if related else [name],
+                valid_from=valid_from,
+                valid_to=valid_to,
+                official_uri=record.source_uri,
+                source_uri=record.source_uri,
+                confidence=0.96,
+                match_reason="上海图书馆地名志道路实体精确命中。",
+                resolution_status="resolved",
+                name_periods=periods,
+            )
+        ]
+
+    # Add old-name aliases to modern roads when a curated sequence is absent.
+    for modern_name, old_items in modern_to_old.items():
+        if modern_name not in FALLBACK_CANDIDATES and modern_name in road_records:
+            continue
+        for candidate in FALLBACK_CANDIDATES.get(modern_name, []):
+            if candidate.name_periods:
+                continue
+            modern_record = road_records.get(modern_name)
+            modern_from, modern_to = parse_temporal_value((modern_record.raw or {}).get("temporalValue")) if modern_record else (None, None)
+            periods = []
+            for old_name, old_record in old_items:
+                old_from, old_to = parse_temporal_value((old_record.raw or {}).get("temporalValue"))
+                periods.append({"name": old_name, "from_year": old_from, "to_year": old_to, "source_uri": old_record.source_uri})
+            periods.append({"name": modern_name, "from_year": modern_from, "to_year": modern_to, "source_uri": modern_record.source_uri if modern_record else candidate.source_uri})
+            candidate.historical_names = unique(candidate.historical_names + [item[0] for item in old_items])
+            candidate.name_periods = periods
+
+    for record in records:
+        raw = record.raw or {}
+        if record.dataset == "historic_architectures":
+            road = clean_text(raw.get("road"))
+            address = clean_text(raw.get("address"))
+            title = clean_text(raw.get("nameS") or raw.get("nameChs") or record.title)
+            description = clean_text(raw.get("des") or record.snippet)
+            if not road or not title:
+                continue
+            years = extract_years(description, raw.get("created"))
+            feature = HistoricalFeature(
+                feature_id=stable_id("building", record.source_uri or f"{title}-{address}"),
+                feature_type="building",
+                title=title,
+                description=description[:900] or f"上海优秀历史建筑记录：{address}",
+                source_uri=record.source_uri,
+                source_title="上海优秀历史建筑",
+                start_year=years[0],
+                end_year=years[1],
+                longitude=to_float(raw.get("long") or record.geo.get("lon")),
+                latitude=to_float(raw.get("lat") or record.geo.get("lat")),
+                spatial_precision="source_coordinate" if raw.get("long") and raw.get("lat") else "unknown",
+                address=address,
+                evidence_ids=[stable_id("building", record.source_uri or f"{title}-{address}")],
+                live_api=False,
+            )
+            FALLBACK_FEATURES[road] = merge_features(FALLBACK_FEATURES.get(road, []), [feature])
+            if road not in FALLBACK_CANDIDATES:
+                FALLBACK_CANDIDATES[road] = [
+                    PlaceCandidate(
+                        candidate_id=stable_id("snapshot-place", road),
+                        canonical_name=road,
+                        display_name=f"{road} · 见上海优秀历史建筑记录",
+                        modern_names=[road],
+                        source_uri=record.source_uri,
+                        official_uri=record.source_uri,
+                        confidence=0.9,
+                        match_reason="上海图书馆历史建筑记录提供了该道路的直接地址线索；完整道路实体仍待补充。",
+                        resolution_status="resolved",
+                    )
+                ]
+        elif record.dataset == "event_knowledge":
+            text = clean_text(f"{record.title} {record.snippet} {(record.raw or {}).get('description', '')}")
+            match = PLACE_TOKEN_RE.search(text)
+            if not match:
+                continue
+            road = match.group(1)
+            feature = HistoricalFeature(
+                feature_id=stable_id("event", record.source_uri or record.title),
+                feature_type="event",
+                title=record.title,
+                description=record.snippet[:900],
+                source_uri=record.source_uri,
+                source_title="上海市历史文化事件知识库",
+                start_year=extract_years(record.date, record.snippet)[0],
+                end_year=extract_years(record.date, record.snippet)[1],
+                spatial_precision="road_approximation",
+                address=extract_address(text, [road]),
+                evidence_ids=[stable_id("event", record.source_uri or record.title)],
+                live_api=False,
+            )
+            FALLBACK_FEATURES[road] = merge_features(FALLBACK_FEATURES.get(road, []), [feature])
+
+
+_SNAPSHOT_ROUTES_ADDED = False
+
+
 def stable_id(prefix: str, value: str) -> str:
     digest = hashlib.sha1(value.encode("utf-8")).hexdigest()[:12]
     return f"{prefix}-{digest}"
@@ -620,6 +783,10 @@ def parse_era_hint(value: Any) -> int | None:
 
 
 def resolve_place(address: str, era_hint: Any = None, *, allow_live: bool = True) -> dict[str, Any]:
+    global _SNAPSHOT_ROUTES_ADDED
+    if not _SNAPSHOT_ROUTES_ADDED:
+        _add_snapshot_backed_routes()
+        _SNAPSHOT_ROUTES_ADDED = True
     parsed = parse_public_address(address)
     term = parsed["place_term"]
     era = parse_era_hint(era_hint)
@@ -853,6 +1020,7 @@ def investigate_address(
     generated_at = datetime.now(UTC).isoformat()
     map_time = historical_map_payload(era or (features[0].start_year if features else None))
     experience = build_experience(candidate, features)
+    media = media_for_street(terms)
     return {
         "status": "complete",
         "candidate": candidate.to_dict(),
@@ -880,6 +1048,7 @@ def investigate_address(
             "time": map_time,
         },
         "experience": experience,
+        "media": media,
         "quality": {
             "resolved": resolved,
             "direct_claim_count": len(direct_claims),
@@ -1144,11 +1313,11 @@ def build_place_claims(candidate: PlaceCandidate, features: list[HistoricalFeatu
             subject=candidate.canonical_name,
             predicate="连接",
             object="多个历史事件与建筑",
-            text=f"围绕{candidate.display_name}，至少有 {len(independent)} 条独立来源把同一地点连接到不同年代的事件或建筑。",
+            text=f"本次检索在{candidate.display_name}沿线找到 {len(independent)} 条彼此独立的事件或建筑记录；它们分别说明具体地点，不自动代表整条道路的历史性质。",
             evidence_ids=unique([evidence_id for item in independent[:4] for evidence_id in item.evidence_ids]),
-            support_level="direct",
-            audit_status="passed",
-            confidence=min(0.94, 0.78 + len(independent) * 0.025),
+            support_level="context",
+            audit_status="bounded",
+            confidence=min(0.82, 0.68 + len(independent) * 0.02),
         ))
     return claims
 

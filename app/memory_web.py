@@ -282,6 +282,9 @@ class Handler(BaseHTTPRequestHandler):
             self.respond(200, html.encode("utf-8"), "text/html; charset=utf-8")
         elif path == "/api/health":
             self.respond_json(health_payload())
+        elif path == "/api/catalog":
+            from app.catalog import catalog_payload
+            self.respond_json(catalog_payload())
         elif path.startswith("/api/investigations/"):
             job_id = unquote(path.removeprefix("/api/investigations/")).strip()
             job = INVESTIGATION_STORE.get(job_id)

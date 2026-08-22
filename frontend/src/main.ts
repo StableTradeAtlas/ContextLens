@@ -4,182 +4,100 @@ import type { Candidate, HistoricalMapLayer, InvestigationResult } from "./types
 import type { Map as MapLibreMap } from "maplibre-gl";
 
 type Lang = "zh" | "en";
-type View = "identity" | "timeline" | "atlas" | "sources";
+type CatalogStreet = { id:string; address:string; name_zh:string; name_en:string; district_zh:string; district_en:string; period_zh:string; period_en:string; intro_zh:string; intro_en:string; themes_zh:string[]; themes_en:string[]; cover:string; center:[number,number] };
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
-app.innerHTML = `
-<div class="shell">
-  <header class="topbar">
-    <button class="brand" id="brandBtn" aria-label="ContextLens home"><span class="brand-mark">文</span><span><b>文脉镜 ContextLens</b><small>SHANGHAI ADDRESS DOSSIER</small></span></button>
-    <div class="top-actions"><span class="service"><i id="statusDot"></i><span id="serviceText">上海图书馆官方数据</span></span><button class="ghost" id="methodBtn">方法</button><button class="ghost" id="langBtn" aria-label="Switch language">EN</button></div>
-  </header>
+const state:{lang:Lang;catalog:CatalogStreet[];active:CatalogStreet|null;result:InvestigationResult|null;map:MapLibreMap|null}={lang:"zh",catalog:[],active:null,result:null,map:null};
+const esc=(v:unknown)=>String(v??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[c]!);
+const api=async(path:string,options?:RequestInit)=>{const response=await fetch(path,options);const data=await response.json();if(!response.ok)throw new Error(data.error||"Request failed");return data};
+const tr=<T,>(zh:T,en:T)=>state.lang==="zh"?zh:en;
 
-  <main id="home" class="home">
-    <section class="home-copy">
-      <p class="kicker">ONE ADDRESS · FOUR ANSWERS</p>
-      <h1>一条地址，<br>四个可核查答案。</h1>
-      <p class="lead">它过去叫什么？这里发生过什么？今天在哪里？每个答案由哪条上海图书馆记录支撑？</p>
-      <form class="search-card" id="searchForm">
-        <label><span>上海旧址、路名或门牌</span><input id="addressInput" value="霞飞路436号" autocomplete="off"></label>
-        <label class="era"><span>约略年代（可选）</span><input id="eraInput" value="1930年代" autocomplete="off"></label>
-        <button class="primary" id="resolveBtn" type="submit">建立地址档案 →</button>
-      </form>
-      <div class="examples" aria-label="经过人工检查的示例">
-        <span>先看一个完整案例</span>
-        <button data-address="霞飞路436号" data-era="1930年代">霞飞路436号</button>
-        <button data-address="外滩20号" data-era="1930年代">外滩20号</button>
-        <button data-address="南京路百货公司" data-era="1940年代">南京路百货</button>
-      </div>
-      <div class="candidate-box" id="candidateBox"><p id="candidateMessage"></p><div id="candidateList"></div></div>
-      <div class="trust-row"><span><b id="officialCount">154</b> 条官方快照记录</span><span><b>0</b> 条演示数据</span><span><b>逐条</b> 返回原始来源</span></div>
-    </section>
-    <section class="archive-hero" aria-label="1943 Shanghai archival map preview">
-      <img src="https://iiif-cloud.princeton.edu/iiif/2/42%2F8a%2F93%2F428a930342fb4c36ae9b4ecdc57eae37%2Fintermediate_file/full/1600,/0/default.jpg" alt="1943 Plan of Shanghai archival map" id="heroArchiveImg">
-      <div class="archive-shade"></div>
-      <div class="archive-year">1943</div>
-      <article><small>ARCHIVAL MAP · PUBLIC IIIF</small><h2>先看见史料，<br>再阅读解释。</h2><p>原图来自 Princeton University Library / AGSL。历史地图只用于辨认街道结构，不制造精确门牌。</p></article>
-      <a href="https://geodiscovery.uwm.edu/catalog/princeton-8623j0184" target="_blank" rel="noopener noreferrer">打开原图记录 ↗</a>
-    </section>
-  </main>
+const featureEnglish:Record<string,string>={"刘海粟近作展览会":"Exhibition of Liu Haisu’s Recent Works","康健书局创办":"Kangjian Bookstore founded","国泰电影院":"Cathay Theatre","新式里弄":"New-style lane housing","国际礼拜堂":"Shanghai Community Church","西湖公寓":"West Lake Apartments","衡山宾馆":"Hengshan Hotel","集雅公寓":"Georgia Apartments","万宜坊":"Wanyi Lane","重庆公寓":"Chongqing Apartments","原卢湾区政府2号楼":"Former Luwan District Government Building No. 2","亚尔培坊":"King Albert Lane","凡尔登花园":"Verdun Garden","静安别墅":"Jing’an Villas","上海美术馆":"Shanghai Art Museum","国际饭店":"Park Hotel","泰兴大楼":"Taixing Building","南京西路931号公寓":"Apartment at 931 West Nanjing Road","多伦路始建":"Duolun Road established","鸿德堂":"Hongde Church","永安里前期住宅竣工":"First phase of Yong’an Lane completed","大桥大楼":"Bridge House","华德路监狱启用":"Ward Road Gaol opened","摩西会堂":"Ohel Moishe Synagogue","外滩信号台建成":"Bund Signal Tower completed","和平饭店北楼":"Peace Hotel North Building"};
+const descriptionEnglish:Record<string,string>={
+  "刘海粟近作展览会":"In 1927, Liu Haisu presented an exhibition of recent work at the Shangxian Hall on Avenue Joffre; contemporary notices appeared in Shibao and Shanghai Pictorial.",
+  "康健书局创办":"Kangjian Bookstore was founded in 1934 at 436 Avenue Joffre (today’s Huaihai Middle Road) and remained active until 1950.",
+  "新式里弄":"This new-style lane compound at 300 Hengshan Road records the emergence of denser residential forms along the street in 1920.",
+  "国际礼拜堂":"The Shanghai Community Church, completed in 1925, became a major public institution on the former Avenue Pétain.",
+  "西湖公寓":"West Lake Apartments, dated to 1928 in the building record, illustrates the street’s expanding apartment landscape.",
+  "万宜坊":"Wanyi Lane was developed from 1923 and records the long presence of lane housing along South Chongqing Road.",
+  "重庆公寓":"Chongqing Apartments, dated to 1931, represents the growth of multi-unit urban housing on the road.",
+  "亚尔培坊":"King Albert Lane, recorded from 1920, connects the street’s former French name with its residential compounds.",
+  "凡尔登花园":"Verdun Garden was developed between 1925 and 1929, adding garden residences to the street’s varied housing fabric.",
+  "静安别墅":"Jing’an Villas, completed in 1932, form one of the best-known lane compounds on West Nanjing Road.",
+  "上海美术馆":"The building record links the former Shanghai Art Museum to 325 West Nanjing Road, marking the commercial axis’s civic-cultural role in 2012."
+  ,"多伦路始建":"Hongkou District records that the road was established in 1911 under the name Darroch Road, providing the starting point for this dossier.",
+  "鸿德堂":"Shanghai Library’s historic-building record dates the construction of Hongde Church from 1925 to its completion in 1928.",
+  "永安里前期住宅竣工":"Hongkou District records that the first phase of Yong’an Lane, facing North Sichuan Road, was completed in 1925.",
+  "大桥大楼":"Shanghai Library’s historic-building record dates the former Bridge Apartments to 1935.",
+  "华德路监狱启用":"The Shanghai Gazetteer records that Ward Road Gaol, later Tilanqiao Prison, opened in 1903.",
+  "摩西会堂":"The building began in 1907 and was converted into the Ohel Moishe Synagogue in 1927 at 62 Ward Road, today’s Changyang Road.",
+  "外滩信号台建成":"Shanghai’s protected-heritage register dates the Bund Signal Tower at 1A East Zhongshan No. 2 Road to 1907.",
+  "和平饭店北楼":"The north building was completed in 1929 as the Cathay Hotel at 20 East Zhongshan No. 1 Road."
+};
+const datasetEnglish:Record<string,string>={"上海市历史文化事件知识库":"Shanghai Historical and Cultural Events Knowledge Base","上海优秀历史建筑":"Shanghai Historic Buildings","上海地名志·道路实体":"Shanghai Gazetteer of Place Names — Roads"};
+const editorialEssays:Record<string,{zh:string[];en:string[]}>={
+  xiafei:{zh:["这条道路的历史并非一次简单更名。1901年至1950年间的六个名称阶段，映照了法租界市政扩展、战时改名与新中国成立后的城市命名调整。","现有事件记录把1927年的刘海粟展览和1934年的康健书局定位在霞飞路上，使商业街景之外的出版、美术与文化交往变得可见。"],en:["The road’s history is more than a single renaming. Six name periods between 1901 and 1950 reflect concession expansion, wartime changes and the remaking of Shanghai’s civic geography after 1949.","Records of Liu Haisu’s 1927 exhibition and the 1934 founding of Kangjian Bookstore reveal publishing, art and cultural exchange behind the familiar commercial streetscape."]},
+  hengshan:{zh:["贝当路时期形成的住宅与公共建筑，使衡山路成为观察近代上海居住方式变化的一条剖面。里弄、独立公寓和宗教建筑在同一道路上并存。","1920年代的新式里弄、国际礼拜堂与西湖公寓分别呈现人口密度、公共交往和公寓生活的发展，也解释了道路风貌为何具有连续而多样的层次。"],en:["Housing and public buildings from the Avenue Pétain period make Hengshan Road a cross-section of changing urban life. Lane compounds, apartments and a church coexist along one route.","The 1920 lane housing, Community Church and West Lake Apartments show changing density, public association and apartment living, explaining the street’s layered character."]},
+  chongqing:{zh:["重庆南路的档案重点不是单座名建筑，而是里弄与公寓如何共同构成近代城市住宅。万宜坊和重庆公寓记录了从低层弄堂到集合住宅的并置。","道路在1943年至1946年间曾使用灵宝路之名。名称变化与住宅形态的连续存在形成对照：行政命名可以迅速改变，街区生活则往往延续更久。"],en:["The dossier focuses less on a single monument than on how lane housing and apartments formed the modern residential city. Wanyi Lane and Chongqing Apartments record two forms side by side.","The name Lingbao Road was used between 1943 and 1946. Rapid administrative renaming contrasts with the longer continuity of neighbourhood life."]},
+  shaanxi:{zh:["陕西南路穿过不同街区，花园住宅、新式里弄与沿街商业共同存在。亚尔培坊和凡尔登花园提供了两种住宅组织方式的具体坐标。","1946年的定名把此前短暂使用的咸阳路纳入新的城市路名体系。今天的街景仍可帮助观察历史住宅与当代交通、商业之间的关系。"],en:["South Shaanxi Road crosses several neighbourhoods where garden residences, lane housing and commerce coexist. King Albert Lane and Verdun Garden locate two distinct residential forms.","The 1946 name replaced the short-lived Xianyang Road. Today’s streetscape still reveals how historic housing meets contemporary transport and commerce."]},
+  nanjingwest:{zh:["从静安寺路到南京西路，这条道路逐渐成为连接商业、旅馆、公寓与公共文化设施的城市轴线。静安别墅展示了商业大道背后的日常居住空间。","1932年的静安别墅与2012年的公共文化建筑记录相隔八十年，说明道路并非停留在单一的黄金年代，而是在持续转换功能。"],en:["From Bubbling Well Road to West Nanjing Road, the route became an axis of commerce, hotels, apartments and civic culture. Jing’an Villas reveal everyday housing behind the avenue.","The gap between the 1932 villas and a 2012 civic-cultural record shows a street that kept changing function rather than remaining fixed in one golden age."]},
+  duolun:{zh:["多伦路始建于1911年，早期名为窦乐安路。道路尺度不大，却汇集宗教建筑、里弄住宅、文学活动与革命遗址，形成高度集中的文化地景。","鸿德堂的建设年代和永安里分期形成的街区，共同说明文化名人活动并非发生在抽象地名中，而是嵌入具体住宅、会堂和街巷。"],en:["Established in 1911 as Darroch Road, this short street concentrates churches, lane housing, literary activity and revolutionary sites into a dense cultural landscape.","The construction of Hongde Church and the phased development of Yong’an Lane show that cultural history unfolded within specific homes, halls and lanes."]},
+  sichuan:{zh:["四川北路既是商业道路，也是虹口居住和文化活动的重要轴线。大桥大楼与永安里分别呈现公寓和大规模里弄住宅两类城市生活。","永安里1925年竣工的前期住宅后来成为革命活动地点。建筑用途与居住者变化，使同一处空间连接商业企业、职员生活和政治历史。"],en:["North Sichuan Road is both a commercial route and an axis of residential and cultural life in Hongkou. Bridge House and Yong’an Lane represent apartments and large lane compounds.","The first phase of Yong’an Lane, completed in 1925, later became associated with revolutionary activity, linking corporate housing, everyday life and political history."]},
+  changyang:{zh:["华德路时期形成的监狱与会堂，使今天的长阳路保存了制度管理和移民社群两种截然不同的历史空间。","1903年启用的监狱与1927年改作会堂的摩西会堂，后来都成为提篮桥历史文化街区的重要组成。二战期间犹太难民的到来又赋予该地区新的世界性联系。"],en:["The former Ward Road preserves two contrasting institutional landscapes: a prison associated with civic control and a synagogue associated with migrant community life.","The prison opened in 1903 and Ohel Moishe took its synagogue form in 1927. Both later became anchors of the Tilanqiao historic district, reshaped again by Jewish refuge during the Second World War."]},
+  bund:{zh:["外滩的历史价值来自建筑群、江岸交通与城市天际线的共同形成，而非任何一栋建筑。十九世纪照片仍能显示连续街墙形成之前的滨江尺度。","1907年的信号台服务于黄浦江航运，1929年的华懋饭店则代表金融和旅馆建筑的成熟。两者把基础设施、公共服务与城市形象连接在同一段江岸。"],en:["The Bund’s significance lies in the combined formation of its building ensemble, river traffic and skyline rather than in any single landmark. Nineteenth-century photographs show the waterfront before its continuous street wall matured.","The 1907 Signal Tower served Huangpu River navigation, while the 1929 Cathay Hotel represented mature financial and hotel architecture—linking infrastructure, public service and city image."]}
+};
+const ui={
+  zh:{archive:"上海街道历史档案",tagline:"沿着一条上海街道，阅读它的名称、人物、建筑与时代变迁。",choose:"选择一条街道",filter:"在已完成的街道档案中筛选",all:"全部",enter:"进入街道档案",back:"返回街道目录",export:"导出阅读版",loading:"正在打开街道档案",loadingNote:"整理道路名称、历史节点、影像与资料来源。",overview:"街道概览",names:"名称沿革",chronicle:"街道纪事",images:"街道影像",place:"街道与城市",sources:"资料来源",related:"继续阅读",source:"查看资料依据",visual:"查看图像信息",mapReason:"这幅1943年上海地图用于观察道路在近代城市路网中的位置；标记点表示本档案涉及的建筑或事件。",research:"编者注",researchText:"仅保留有明确年代的历史节点。个别地点精度止于道路或门牌范围，具体说明附在相应资料中。",noMatch:"目录中没有符合当前筛选的街道。",sourceHelp:"以下资料共同支撑本页的名称、建筑与事件叙述。打开条目可查看记录内容与馆藏入口。"},
+  en:{archive:"Shanghai Street History Archive",tagline:"Follow one Shanghai street through its names, people, buildings and transformations.",choose:"Choose a street",filter:"Filter the completed street dossiers",all:"All",enter:"Open street dossier",back:"Back to catalogue",export:"Export reader edition",loading:"Opening the street dossier",loadingNote:"Assembling names, dated moments, images and sources.",overview:"Overview",names:"Names through time",chronicle:"Street chronicle",images:"Visual archive",place:"Street in the city",sources:"Sources",related:"Continue exploring",source:"View supporting source",visual:"View image record",mapReason:"This 1943 map locates the road within Shanghai’s modern street network; markers identify buildings or events discussed in this dossier.",research:"Editorial note",researchText:"Only dated historical moments appear in the chronology. Some locations are known only to street or address level; details appear with their sources.",noMatch:"No published street matches these filters.",sourceHelp:"Together, these records support the names, buildings and events presented above. Open an entry for its record details and collection link."}
+};
+const t=()=>ui[state.lang];
 
-  <main id="dossier" class="dossier" hidden>
-    <header class="dossier-head">
-      <button class="back" id="backBtn">← 新建调查</button>
-      <div><p class="kicker">VERIFIED ADDRESS DOSSIER</p><h1 id="placeTitle"></h1><p id="placeSummary"></p></div>
-      <div class="head-actions"><button class="secondary" id="printBtn">打印 / 保存 PDF</button><button class="primary" id="downloadBtn">下载证据档案</button></div>
-    </header>
-    <nav class="dossier-tabs" aria-label="地址档案四个部分">
-      <button class="active" data-view="identity"><b>01</b><span>地址身份<small>旧名 → 今名</small></span></button>
-      <button data-view="timeline"><b>02</b><span>发生过什么<small>按时间排列</small></span></button>
-      <button data-view="atlas"><b>03</b><span>古今位置<small>原图 + 当代地图</small></span></button>
-      <button data-view="sources"><b>04</b><span>证据来源<small>逐条可打开</small></span></button>
-    </nav>
-    <section class="view-panel" id="viewPanel"></section>
-  </main>
-
-  <div class="progress" id="progress" aria-live="polite"><div><span class="spinner"></span><p class="kicker">EVIDENCE COMPILER</p><h2 id="progressTitle">正在核对地址</h2><p id="progressText">先解析旧今路名，再连接事件、建筑和来源。</p><div class="progress-line"><i id="progressBar"></i></div></div></div>
-  <div class="modal-backdrop" id="modalBackdrop"></div><aside class="modal" id="modal" aria-hidden="true"><button class="modal-close" id="modalClose" aria-label="关闭">×</button><div id="modalBody"></div></aside>
-  <div class="toast" id="toast"></div>
-</div>`;
-
-const state: {lang: Lang; view: View; candidate: Candidate | null; result: InvestigationResult | null; map: MapLibreMap | null; jobId: string} = {lang:"zh", view:"identity", candidate:null, result:null, map:null, jobId:""};
-const $ = <T extends HTMLElement>(id:string) => document.getElementById(id) as T;
-const esc = (v:unknown) => String(v ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]!));
-const api = async (path:string, options?:RequestInit) => { const r=await fetch(path, options); const data=await r.json(); if(!r.ok) throw new Error(data.error||"Request failed"); return data; };
-const toast = (text:string) => { $("toast").textContent=text; $("toast").classList.add("open"); setTimeout(()=>$("toast").classList.remove("open"),2400); };
-
-function setLanguage() {
-  const en=state.lang==="en";
-  $("langBtn").textContent=en?"中":"EN";
-  $("serviceText").textContent=en?"Official Shanghai Library data":"上海图书馆官方数据";
-  $("methodBtn").textContent=en?"Method":"方法";
-  $("backBtn").textContent=en?"← New search":"← 新建调查";
-  $("printBtn").textContent=en?"Print / save PDF":"打印 / 保存 PDF";
-  $("downloadBtn").textContent=en?"Download evidence":"下载证据档案";
-  if(state.result) renderView();
+function shell(){
+  app.innerHTML=`<div class="shell"><header class="topbar"><button class="brand" id="brandBtn"><span class="brand-mark">文</span><span><b>文脉镜 ContextLens</b><small>${esc(t().archive)}</small></span></button><div class="top-actions"><button class="lang-switch" id="langBtn">${state.lang==="zh"?"EN":"中文"}</button></div></header><main id="view"></main><div class="progress" id="progress"><div><span class="spinner"></span><h2>${esc(t().loading)}</h2><p>${esc(t().loadingNote)}</p></div></div><div class="modal-backdrop" id="backdrop"></div><aside class="source-drawer" id="drawer" aria-hidden="true"><button class="drawer-close" id="drawerClose">×</button><div id="drawerBody"></div></aside><div class="toast" id="toast"></div></div>`;
+  document.getElementById("brandBtn")!.addEventListener("click",renderHome);
+  document.getElementById("langBtn")!.addEventListener("click",()=>{state.lang=state.lang==="zh"?"en":"zh";shell();state.result&&state.active?renderDossier():renderHome()});
+  document.getElementById("drawerClose")!.addEventListener("click",closeDrawer);document.getElementById("backdrop")!.addEventListener("click",closeDrawer);
 }
 
-function openModal(html:string){ $("modalBody").innerHTML=html; $("modal").classList.add("open"); $("modalBackdrop").classList.add("open"); $("modal").setAttribute("aria-hidden","false"); }
-function closeModal(){ $("modal").classList.remove("open"); $("modalBackdrop").classList.remove("open"); $("modal").setAttribute("aria-hidden","true"); }
-function showProgress(){ $("progressBar").style.width="10%"; $("progress").classList.add("open"); }
-function hideProgress(){ $("progress").classList.remove("open"); }
-
-async function resolveAddress(address:string, era:string){
-  if(!address.trim()){toast("请输入地址");return;}
-  showProgress();
-  try{
-    const data=await api("/api/place/resolve",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({address,era_hint:era,allow_live:true})});
-    hideProgress();
-    if(!data.candidates?.length){ $("candidateBox").classList.add("open"); $("candidateMessage").textContent=data.guidance||"没有找到可确认的地点。请补充路名、门牌或年代。"; $("candidateList").innerHTML=""; return; }
-    if(data.candidates.length===1){ await investigate(address,era,data.candidates[0]); return; }
-    $("candidateBox").classList.add("open"); $("candidateMessage").textContent="这个输入可能对应多个地点，请确认：";
-    $("candidateList").innerHTML=data.candidates.map((c:Candidate)=>`<button class="candidate" data-id="${esc(c.candidate_id)}"><span><b>${esc(c.display_name)}</b><small>${esc(c.match_reason)}</small></span><strong>${Math.round(c.confidence*100)}%</strong></button>`).join("");
-    $("candidateList").querySelectorAll<HTMLButtonElement>(".candidate").forEach((btn,i)=>btn.onclick=()=>investigate(address,era,data.candidates[i]));
-  }catch(e){hideProgress();toast(e instanceof Error?e.message:"地址解析失败");}
+function renderHome(){
+  state.result=null;state.active=null;if(state.map){state.map.remove();state.map=null}closeDrawer();
+  const districts=[...new Set(state.catalog.map(x=>state.lang==="zh"?x.district_zh:x.district_en))];
+  document.getElementById("view")!.innerHTML=`<section class="catalog-hero"><div class="map-paper" aria-hidden="true"></div><div class="hero-intro"><p class="kicker">CONTEXTLENS · SHANGHAI</p><h1>文脉镜 <span>ContextLens</span></h1><h2>${esc(t().archive)}</h2><p>${esc(t().tagline)}</p></div><div class="catalog-panel"><div class="catalog-heading"><div><span>${esc(t().choose)}</span><b>${String(state.catalog.length).padStart(2,"0")}</b></div><label><span class="sr-only">${esc(t().filter)}</span><input id="filterInput" placeholder="${esc(t().filter)}"><i>⌕</i></label></div><div class="filters" id="filters"><button class="active" data-filter="">${esc(t().all)}</button>${districts.map(d=>`<button data-filter="${esc(d)}">${esc(d)}</button>`).join("")}</div><div class="catalog-grid" id="catalogGrid"></div></div></section><footer class="site-foot"><span>文脉镜 ContextLens</span><span>${state.lang==="zh"?"数据基础：上海图书馆开放数据及注明来源的公共馆藏":"Data foundation: Shanghai Library open data and credited public collections"}</span></footer>`;
+  let district="";const input=document.getElementById("filterInput") as HTMLInputElement;
+  const draw=()=>{const q=input.value.trim().toLowerCase();const rows=state.catalog.filter(x=>{const hay=[x.name_zh,x.name_en,x.district_zh,x.district_en,...x.themes_zh,...x.themes_en].join(" ").toLowerCase();const d=state.lang==="zh"?x.district_zh:x.district_en;return(!q||hay.includes(q))&&(!district||d===district)});document.getElementById("catalogGrid")!.innerHTML=rows.length?rows.map(catalogCard).join(""):`<p class="catalog-empty">${esc(t().noMatch)}</p>`;document.querySelectorAll<HTMLButtonElement>("[data-street]").forEach(b=>b.onclick=()=>openStreet(b.dataset.street||""));wireImageFallbacks()};
+  input.oninput=draw;document.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach(b=>b.onclick=()=>{district=b.dataset.filter||"";document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));draw()});draw();
 }
 
-async function investigate(address:string,era:string,candidate:Candidate){
-  state.candidate=candidate; showProgress(); $("progressTitle").textContent="正在建立地址档案"; $("progressText").textContent="只保留与地点直接相关且可返回来源的记录。";
-  try{
-    const job=await api("/api/investigations",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({address,era_hint:era,candidate,allow_live:true})}); state.jobId=job.id;
-    for(let i=0;i<80;i++){
-      const current=await api(`/api/investigations/${job.id}`); $("progressBar").style.width=`${Math.max(18,current.progress||i*2)}%`; if(current.message) $("progressText").textContent=current.message;
-      if(current.status==="complete"){state.result=current.result;hideProgress();openDossier();return;} if(current.status==="failed") throw new Error(current.error||"调查失败"); await new Promise(r=>setTimeout(r,180));
-    }
-    throw new Error("调查超时");
-  }catch(e){hideProgress();toast(e instanceof Error?e.message:"调查失败");}
+function catalogCard(item:CatalogStreet){const themes=state.lang==="zh"?item.themes_zh:item.themes_en;return `<article class="catalog-card"><button data-street="${esc(item.id)}"><div class="card-image"><img src="${esc(item.cover)}" alt="" loading="lazy"><span>${esc(state.lang==="zh"?item.period_zh:item.period_en)}</span></div><div class="card-copy"><small>${esc(state.lang==="zh"?item.district_zh:item.district_en)}</small><h3>${esc(state.lang==="zh"?item.name_zh:item.name_en)}</h3><p>${esc(state.lang==="zh"?item.intro_zh:item.intro_en)}</p><div>${themes.map(x=>`<i>${esc(x)}</i>`).join("")}</div><b>${esc(t().enter)} →</b></div></button></article>`}
+
+async function openStreet(id:string){const item=state.catalog.find(x=>x.id===id);if(!item)return;state.active=item;document.getElementById("progress")!.classList.add("open");try{const resolved=await api("/api/place/resolve",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({address:item.address,allow_live:false})});if(!resolved.candidates?.length)throw new Error("Catalogue record unavailable");const candidate:Candidate=resolved.candidates[0];const job=await api("/api/investigations",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({address:item.address,candidate,allow_live:false})});for(let n=0;n<100;n++){const current=await api(`/api/investigations/${job.id}`);if(current.status==="complete"){state.result=current.result;document.getElementById("progress")!.classList.remove("open");renderDossier();return}if(current.status==="failed")throw new Error(current.error);await new Promise(r=>setTimeout(r,100))}throw new Error("Timeout")}catch(e){document.getElementById("progress")!.classList.remove("open");toast(state.lang==="zh"?"街道档案暂时无法打开":"The street dossier could not be opened")}}
+
+function renderDossier(){if(!state.result||!state.active)return;if(state.map){state.map.remove();state.map=null}const r=state.result,c=state.active;const timeline=(r.timeline||[]).filter((x:any)=>x.start_year||x.date);const periods=(r.candidate.name_periods||[]).filter((x:any)=>x.from_year||x.to_year);const media=r.media||[];const maps=r.experience?.historical_maps||[];const map=maps.find((x:HistoricalMapLayer)=>x.map_id==="princeton-1943")||maps[0];const lead=media[0];
+  document.getElementById("view")!.innerHTML=`<nav class="dossier-bar"><button id="backBtn">← ${esc(t().back)}</button><div><a href="#chronicle">${esc(t().chronicle)}</a>${media.length?`<a href="#visuals">${esc(t().images)}</a>`:""}<a href="#sources">${esc(t().sources)}</a></div><button id="printBtn">${esc(t().export)}</button></nav><article class="dossier">
+  <header class="dossier-cover" style="--cover:url('${esc(lead?.image_url||c.cover)}')"><div class="cover-shade"></div><div class="cover-copy"><p>${esc(state.lang==="zh"?c.district_zh:c.district_en)} · ${esc(state.lang==="zh"?c.period_zh:c.period_en)}</p><h1>${esc(state.lang==="zh"?c.name_zh:c.name_en)}</h1><p>${esc(state.lang==="zh"?c.intro_zh:c.intro_en)}</p><div>${(state.lang==="zh"?c.themes_zh:c.themes_en).map(x=>`<span>${esc(x)}</span>`).join("")}</div></div></header>
+  <section class="editorial-overview"><header><small>01</small><h2>${state.lang==="zh"?"读懂这条街":"Reading the street"}</h2></header><div>${(editorialEssays[c.id]?.[state.lang]||[]).map(p=>`<p>${esc(p)}</p>`).join("")}</div></section>
+  ${periods.length>1?`<section class="name-story"><header><small>02</small><h2>${esc(t().names)}</h2></header><div class="name-track">${periods.map((p:any,i:number)=>`<article><time>${p.from_year?`${p.from_year}`:state.lang==="zh"?`${p.to_year}年前`:`Before ${p.to_year}`}${p.to_year?`—${p.to_year}`:state.lang==="zh"?"—至今":"—present"}</time><h3>${esc(p.name)}</h3><p>${esc(nameContext(p.name,i,periods.length))}</p></article>`).join("")}</div></section>`:""}
+  <section class="chronicle" id="chronicle"><header><small>${periods.length>1?"03":"02"}</small><h2>${esc(t().chronicle)}</h2></header><div class="chronicle-list">${timeline.map((x:any,i:number)=>moment(x,i,r.evidence||[])).join("")}</div></section>
+  ${media.length?`<section class="visuals" id="visuals"><header><small>03</small><h2>${esc(t().images)}</h2></header><div class="visual-grid">${media.map((x:any)=>{const title=state.lang==="en"?(x.title_en||x.title):x.title;const desc=state.lang==="en"?(x.description_en||x.description):x.description;return `<figure><button data-media="${esc(x.asset_id)}"><img src="${esc(x.image_url)}" alt="${esc(title)}" loading="lazy"><span>${esc(t().visual)} ↗</span></button><figcaption><time>${esc(x.year)}</time><h3>${esc(title)}</h3><p>${esc(desc)}</p><small>${esc(x.provider)} · ${esc(x.creator)}</small></figcaption></figure>`}).join("")}</div></section>`:""}
+  ${map?`<section class="place-chapter"><div class="place-copy"><small>04</small><h2>${esc(t().place)}</h2><p>${esc(t().mapReason)}</p><dl><dt>${state.lang==="zh"?"地图":"Map"}</dt><dd>${esc(map.title)}</dd><dt>${state.lang==="zh"?"年代":"Year"}</dt><dd>${esc(map.year)}</dd><dt>${state.lang==="zh"?"馆藏":"Collection"}</dt><dd>${esc(map.provider)}</dd></dl><a href="${esc(map.source_url)}" target="_blank" rel="noopener noreferrer">${state.lang==="zh"?"查看地图馆藏记录":"Open map collection record"} ↗</a></div><div class="place-map"><div id="modernMap"></div></div></section>`:""}
+  <aside class="research-note"><b>${esc(t().research)}</b><p>${esc(t().researchText)}</p></aside>
+  <section class="sources" id="sources"><header><small>05</small><h2>${esc(t().sources)}</h2><p>${esc(t().sourceHelp)}</p></header><div class="source-list">${(r.evidence||[]).map((x:any)=>sourceRow(x)).join("")}</div></section>
+  <section class="related"><small>${esc(t().related)}</small><div>${state.catalog.filter(x=>x.id!==c.id).slice(0,3).map(x=>`<button data-related="${esc(x.id)}"><span>${esc(state.lang==="zh"?x.district_zh:x.district_en)}</span><b>${esc(state.lang==="zh"?x.name_zh:x.name_en)}</b><i>→</i></button>`).join("")}</div></section></article>`;
+  document.getElementById("backBtn")!.onclick=renderHome;document.getElementById("printBtn")!.onclick=()=>window.print();document.querySelectorAll<HTMLButtonElement>("[data-source]").forEach(b=>b.onclick=()=>openSource(b.dataset.source||""));document.querySelectorAll<HTMLButtonElement>("[data-media]").forEach(b=>b.onclick=()=>openMedia(b.dataset.media||""));document.querySelectorAll<HTMLButtonElement>("[data-related]").forEach(b=>b.onclick=()=>openStreet(b.dataset.related||""));wireImageFallbacks();void initMap();window.scrollTo({top:0});
 }
 
-function openDossier(){
-  if(!state.result)return; $("candidateBox").classList.remove("open"); $("home").hidden=true; $("dossier").hidden=false; state.view="identity";
-  $("placeTitle").textContent=state.result.candidate.display_name; $("placeSummary").textContent=state.result.summary;
-  document.querySelectorAll<HTMLButtonElement>(".dossier-tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view)); renderView(); window.scrollTo({top:0,behavior:"smooth"});
-}
+function wireImageFallbacks(){const fallback="https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai%20Map%201954.jpg?width=1400";document.querySelectorAll<HTMLImageElement>("img").forEach(img=>img.onerror=()=>{img.onerror=null;img.src=fallback;img.classList.add("image-fallback")})}
 
-function renderView(){
-  if(!state.result)return; if(state.map){state.map.remove();state.map=null;}
-  const panel=$("viewPanel");
-  if(state.view==="identity") panel.innerHTML=identityView();
-  if(state.view==="timeline") panel.innerHTML=timelineView();
-  if(state.view==="atlas"){panel.innerHTML=atlasView(); void initMap();}
-  if(state.view==="sources") panel.innerHTML=sourcesView();
-  wirePanel();
-}
+function nameContext(name:string,index:number,total:number){if(state.lang==="zh")return index===total-1?"沿用至今的道路名称。":"这一名称阶段由道路实体记录确认；相关年代与后续名称共同构成更名序列。";return index===total-1?"The street’s present-day name.":"Road authority records establish this period within the documented sequence of names."}
+function moment(x:any,index:number,evidence:any[]){const source=evidence.find((e:any)=>e.evidence_id===x.feature_id);const title=state.lang==="zh"?x.title:(featureEnglish[x.title]||x.title);const raw=source?.description||source?.snippet||x.address||"";const desc=state.lang==="en"?(descriptionEnglish[x.title]||raw):raw;return `<article class="moment"><div><time>${esc(x.time_label||x.start_year)}</time><span>${String(index+1).padStart(2,"0")}</span></div><div><h3>${esc(title)}</h3><p>${esc(desc)}</p>${x.address?`<address>${esc(x.address)}</address>`:""}<button data-source="${esc(x.feature_id)}">${esc(t().source)} →</button></div></article>`}
+function sourceRow(x:any){const id=x.evidence_id||x.record_id;const provider=x.lineage?.provider||x.provider||"上海图书馆";const title=state.lang==="en"?(datasetEnglish[x.source_title]||featureEnglish[x.title]||x.source_title||x.title):(x.source_title||x.title);const raw=x.description||x.snippet||"";const desc=state.lang==="en"?(descriptionEnglish[x.title]||raw):raw;return `<button data-source="${esc(id)}"><span><small>${esc(provider)}</small><b>${esc(title)}</b><p>${esc(desc.slice(0,160))}</p></span><i>↗</i></button>`}
 
-function identityView(){
-  const r=state.result!, periods=r.candidate.name_periods||[]; const direct=r.claims?.filter((c:any)=>c.support_level==="direct")||[];
-  return `<div class="identity-layout"><article class="answer-card hero-answer"><p class="answer-label">ANSWER 01 · ADDRESS IDENTITY</p><h2>${esc(r.candidate.historical_names?.[0]||r.candidate.canonical_name)} <span>→</span> ${esc(r.candidate.modern_names?.[0]||r.candidate.canonical_name)}</h2><p>${esc(r.candidate.match_reason)}</p><div class="confidence"><span>地址解析可信度</span><b>${Math.round(r.candidate.confidence*100)}%</b></div></article><section class="name-ladder"><h3>这条路如何变成今天的名字</h3>${periods.length?periods.map((p:any,i:number)=>`<div class="name-step"><b>${String(i+1).padStart(2,"0")}</b><span><strong>${esc(p.name)}</strong><small>${p.from_year||"年代待考"}${p.to_year?`—${p.to_year}`:"—至今"}</small></span></div>`).join(""):`<div class="empty">官方记录暂未提供完整更名序列。</div>`}</section><aside class="audit-card"><p class="answer-label">WHAT WE CAN SAY</p><h3>${direct.length} 条直接主张</h3>${direct.slice(0,3).map((c:any)=>`<button class="claim-link" data-evidence="${esc(c.evidence_ids?.[0]||"")}">${esc(c.text)}<span>查看证据 ↗</span></button>`).join("")}<p class="boundary">没有来源支撑的内容不会补写为故事。</p></aside></div>`;
-}
+function openSource(id:string){const r=state.result;if(!r)return;const x=(r.evidence||[]).find((e:any)=>e.evidence_id===id||e.record_id===id);if(!x)return;const uri=x.source_uri||x.lineage?.official_uri||"";const title=state.lang==="en"?(datasetEnglish[x.source_title]||featureEnglish[x.title]||x.source_title||x.title):(x.source_title||x.title);const raw=x.description||x.snippet||"";const desc=state.lang==="en"?(descriptionEnglish[x.title]||raw):raw;openDrawer(`<p class="drawer-kicker">${esc(t().sources)}</p><h2>${esc(title)}</h2><blockquote>${esc(desc)}</blockquote><dl><dt>${state.lang==="zh"?"提供机构":"Provider"}</dt><dd>${esc(x.lineage?.provider||x.provider||"上海图书馆")}</dd><dt>${state.lang==="zh"?"资料集":"Collection"}</dt><dd>${esc(x.dataset_label||x.dataset||"")}</dd><dt>${state.lang==="zh"?"与本页关系":"Contribution"}</dt><dd>${state.lang==="zh"?"支持本页对应的道路、建筑或事件叙述。":"Supports the corresponding road, building or event account on this page."}</dd></dl>${uri?`<a class="drawer-link" href="${esc(uri)}" target="_blank" rel="noopener noreferrer">${state.lang==="zh"?"打开馆藏原始记录":"Open original collection record"} ↗</a>`:""}`)}
+function openMedia(id:string){const x=state.result?.media?.find((e:any)=>e.asset_id===id);if(!x)return;const title=state.lang==="en"?(x.title_en||x.title):x.title;const desc=state.lang==="en"?(x.description_en||x.description):x.description;openDrawer(`<p class="drawer-kicker">${esc(t().images)}</p><h2>${esc(title)}</h2><img class="drawer-image" src="${esc(x.image_url)}" alt=""><p>${esc(desc)}</p><dl><dt>${state.lang==="zh"?"作者":"Creator"}</dt><dd>${esc(x.creator)}</dd><dt>${state.lang==="zh"?"收藏":"Collection"}</dt><dd>${esc(x.provider)}</dd><dt>${state.lang==="zh"?"许可":"Licence"}</dt><dd>${esc(x.license)}</dd><dt>${state.lang==="zh"?"采用理由":"Why included"}</dt><dd>${state.lang==="zh"?"用于观察该道路在相应年代的街景、尺度与沿街环境。":"Included to examine the street’s appearance, scale and surroundings in the stated period."}</dd></dl><a class="drawer-link" href="${esc(x.source_url)}" target="_blank" rel="noopener noreferrer">${state.lang==="zh"?"打开图像原始记录":"Open original image record"} ↗</a>`)}
+function openDrawer(html:string){document.getElementById("drawerBody")!.innerHTML=html;document.getElementById("drawer")!.classList.add("open");document.getElementById("backdrop")!.classList.add("open")}
+function closeDrawer(){document.getElementById("drawer")?.classList.remove("open");document.getElementById("backdrop")?.classList.remove("open")}
+function toast(s:string){const el=document.getElementById("toast")!;el.textContent=s;el.classList.add("open");setTimeout(()=>el.classList.remove("open"),2400)}
+async function initMap(){const el=document.getElementById("modernMap");if(!el||!state.result||!state.active)return;try{const ml=await import("maplibre-gl");state.map=new ml.Map({container:el,style:"https://tiles.openfreemap.org/styles/positron",center:state.active.center,zoom:14,attributionControl:{compact:true}});state.map.on("load",()=>{state.map!.addSource("evidence",{type:"geojson",data:state.result!.feature_collection});state.map!.addLayer({id:"points",type:"circle",source:"evidence",paint:{"circle-radius":7,"circle-color":"#e85d3f","circle-stroke-width":3,"circle-stroke-color":"#f3e9d4"}})})}catch{el.innerHTML=`<p>${state.lang==="zh"?"地图暂不可用，街道档案内容不受影响。":"Map temporarily unavailable; the dossier remains available."}</p>`}}
 
-function timelineView(){
-  const r=state.result!, timeline=r.timeline||[];
-  return `<div class="section-intro"><p class="answer-label">ANSWER 02 · WHAT HAPPENED HERE</p><h2>${timeline.length} 个可核查地点节点</h2><p>按资料中的年代排列；“年代待考”不会被强行放进确定时间线。</p></div><div class="timeline-list">${timeline.length?timeline.map((item:any,i:number)=>`<article class="timeline-card"><time>${esc(item.time_label||item.date||"年代待考")}</time><div><span class="type">${esc(item.feature_type||item.type||"地点记录")}</span><h3>${esc(item.title)}</h3><p>${esc(item.description||item.address||"")}</p><button data-evidence="${esc(item.feature_id||item.evidence_id||"")}">查看原始证据 →</button></div><b>${String(i+1).padStart(2,"0")}</b></article>`).join(""):`<div class="empty">当前地址没有足够的时间节点。</div>`}</div>${questionBlock()}`;
-}
-
-function atlasView(){
-  const maps=state.result!.experience?.historical_maps||[]; const active=maps.find((m:HistoricalMapLayer)=>m.map_id==="princeton-1943")||maps[0];
-  return `<div class="section-intro"><p class="answer-label">ANSWER 03 · THEN AND NOW</p><h2>历史原图与今天的位置，并排阅读。</h2><p>我们不再把未完成配准的原图伪装成精确叠加。左侧看史料，右侧负责今天的定位。</p></div><div class="atlas-grid"><figure class="archive-map"><div class="map-label"><b>${esc(active?.year||1943)}</b><span>历史原图</span></div><img src="${esc(active?.image_url)}" alt="${esc(active?.title)}"><figcaption><strong>${esc(active?.title)}</strong><span>${esc(active?.provider)} · ${esc(active?.license)}</span><a href="${esc(active?.source_url)}" target="_blank" rel="noopener noreferrer">打开馆藏记录 ↗</a></figcaption></figure><section class="modern-map"><div class="map-label"><b>${new Date().getFullYear()}</b><span>当代定位</span></div><div id="modernMap"></div><div class="map-fail" id="mapFail"><b>在线底图暂不可用</b><span>地址坐标和证据仍保留；请稍后重试底图。</span></div></section></div><div class="map-boundary"><b>使用边界</b><span>历史原图存在配准误差，不能据此声称精确门牌位置。现代地图来自 OpenFreeMap / OpenStreetMap。</span></div>`;
-}
-
-function sourcesView(){
-  const evidence=state.result!.evidence||[];
-    return `<div class="section-intro source-intro"><div><p class="answer-label">ANSWER 04 · SOURCE RECEIPT</p><h2>${evidence.length} 条证据，每条都能回到来源。</h2><p>官方记录与辅助公开来源分开标识；查询规模不冒充本次命中数量。</p></div><div class="source-score"><b>${state.result!.quality?.source_count||0}</b><span>可打开来源</span></div></div><div class="source-table"><div class="source-row source-head"><span>记录</span><span>数据集 / 年代</span><span>来源状态</span><span></span></div>${evidence.map((e:any)=>`<article class="source-row"><span><b>${esc(e.source_title||e.title)}</b><small>${esc(e.description||e.snippet||"")}</small></span><span>${esc(e.dataset_label||e.dataset||e.source_title||"开放数据")}<small>${esc(e.time_label||e.date||"年代待考")}</small></span><span><i></i>${e.source_mode==="live_api"?"实时官方接口":e.source_mode==="reviewed_official_snapshot"?"已核验官方快照":"公开辅助来源"}</span><button data-evidence="${esc(e.evidence_id||e.record_id)}">来源护照 →</button></article>`).join("")}</div>`;
-}
-
-function questionBlock(){return `<section class="questions"><div><p class="answer-label">THREE USEFUL QUESTIONS</p><h2>问题由当前档案决定，<br>不是泛泛聊天。</h2></div><div><button data-question="names"><b>01</b><span>这条路为什么改名？<small>只使用道路身份和名称年代回答</small></span></button><button data-question="event"><b>02</b><span>这个门牌发生过什么？<small>只使用直接地点事件回答</small></span></button><button data-question="limits"><b>03</b><span>哪些内容仍然不知道？<small>显示时间、空间和来源空白</small></span></button></div></section>`;}
-
-function wirePanel(){
-  $("viewPanel").querySelectorAll<HTMLButtonElement>("[data-evidence]").forEach(b=>b.onclick=()=>openEvidence(b.dataset.evidence||""));
-  $("viewPanel").querySelectorAll<HTMLButtonElement>("[data-question]").forEach(b=>b.onclick=()=>answerQuestion(b.dataset.question||""));
-}
-
-function openEvidence(id:string){
-  const r=state.result!; const e=(r.evidence||[]).find((x:any)=>x.evidence_id===id||x.record_id===id)||(r.evidence||[])[0]; if(!e){toast("没有找到对应证据");return;}
-  const lineage=e.lineage||{}; openModal(`<p class="answer-label">SOURCE PASSPORT</p><h2>${esc(e.source_title||e.title)}</h2><p class="modal-lead">${esc(e.description||e.snippet||"")}</p><dl><dt>来源状态</dt><dd>${e.source_mode==="live_api"?"实时官方接口":e.source_mode==="reviewed_official_snapshot"?"已核验官方快照":"公开辅助来源"}</dd><dt>数据提供方</dt><dd>${esc(lineage.provider||e.provider||"上海图书馆")}</dd><dt>数据集</dt><dd>${esc(e.dataset_label||e.dataset||lineage.dataset||e.source_title||"开放数据")}</dd><dt>年代</dt><dd>${esc(e.time_label||e.date||"年代待考")}</dd><dt>证据编号</dt><dd>${esc(e.evidence_id||e.record_id)}</dd><dt>标准化</dt><dd>${esc(lineage.normalization||"ContextLens place investigation v1")}</dd></dl><a class="primary modal-link" href="${esc(e.source_uri||lineage.official_uri||"#")}" target="_blank" rel="noopener noreferrer">打开原始来源 ↗</a>`);
-}
-
-function answerQuestion(kind:string){
-  const r=state.result!, direct=(r.claims||[]).filter((c:any)=>c.support_level==="direct"); let title="",body="";
-  if(kind==="names"){title="这条路为什么改名？"; body=`官方道路实体记录显示名称经历：${(r.candidate.name_periods||[]).map((p:any)=>p.name).join(" → ")||"尚无完整序列"}。名称变化是可核查事实；具体政治或制度原因若无直接来源，不在本档案中推断。`;}
-  if(kind==="event"){title="这个门牌发生过什么？"; body=direct[0]?.text||r.finding;}
-  if(kind==="limits"){title="哪些内容仍然不知道？"; body=`当前空间精度：${r.quality?.uncertainty==="bounded"?"来源坐标可用":"道路范围或近似位置"}。${(r.timeline||[]).some((x:any)=>!x.start_year&&!x.date)?"部分节点年代待考。":"现有节点均有年代线索。"} 原图不用于证明精确门牌。`;}
-  openModal(`<p class="answer-label">GROUNDED ANSWER</p><h2>${esc(title)}</h2><p class="modal-lead">${esc(body)}</p><p class="boundary">回答只使用当前地址档案中的记录；点击“证据来源”可逐条复核。</p>`);
-}
-
-async function initMap(){
-  const container=document.getElementById("modernMap"); if(!container||!state.result)return;
-  try{const maplibre=await import("maplibre-gl"); const center=state.result.map?.center||[121.4737,31.2304]; state.map=new maplibre.Map({container,style:"https://tiles.openfreemap.org/styles/liberty",center,zoom:14,attributionControl:{compact:true}}); state.map.on("load",()=>{const fc=state.result!.feature_collection; state.map!.addSource("evidence",{type:"geojson",data:fc}); state.map!.addLayer({id:"evidence-points",type:"circle",source:"evidence",paint:{"circle-radius":8,"circle-color":"#b64b38","circle-stroke-width":3,"circle-stroke-color":"#fffaf0"}}); if(state.result!.map?.bounds?.length===4){const b=state.result!.map.bounds;state.map!.fitBounds([[b[0],b[1]],[b[2],b[3]]],{padding:70,maxZoom:15});}}); state.map.on("error",()=>$("mapFail").classList.add("open"));}
-  catch{$("mapFail").classList.add("open");}
-}
-
-function downloadEvidence(){if(!state.result)return;const blob=new Blob([JSON.stringify(state.result,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`ContextLens-${state.result.candidate.canonical_name}-evidence.json`;a.click();URL.revokeObjectURL(a.href);}
-
-$("searchForm").addEventListener("submit",e=>{e.preventDefault();void resolveAddress(($("addressInput") as HTMLInputElement).value,($("eraInput") as HTMLInputElement).value);});
-document.querySelectorAll<HTMLButtonElement>("[data-address]").forEach(b=>b.onclick=()=>{($("addressInput") as HTMLInputElement).value=b.dataset.address||"";($("eraInput") as HTMLInputElement).value=b.dataset.era||"";void resolveAddress(b.dataset.address||"",b.dataset.era||"");});
-document.querySelectorAll<HTMLButtonElement>(".dossier-tabs button").forEach(b=>b.onclick=()=>{state.view=b.dataset.view as View;document.querySelectorAll(".dossier-tabs button").forEach(x=>x.classList.toggle("active",x===b));renderView();});
-$("backBtn").onclick=()=>{$("dossier").hidden=true;$("home").hidden=false;if(state.map){state.map.remove();state.map=null;}};
-$("brandBtn").onclick=()=>$("backBtn").click(); $("langBtn").onclick=()=>{state.lang=state.lang==="zh"?"en":"zh";setLanguage();};
-$("methodBtn").onclick=()=>openModal(`<p class="answer-label">PRODUCT METHOD</p><h2>一个地址，四个答案。</h2><ol class="method-list"><li><b>地址身份</b><span>拆分旧路名、门牌与年代，并保留歧义。</span></li><li><b>地点事件</b><span>只连接直接出现该地点的事件和建筑。</span></li><li><b>古今位置</b><span>历史原图与现代地图并排，不伪造精确叠加。</span></li><li><b>来源护照</b><span>每条主张返回提供方、数据集、URI与标准化记录。</span></li></ol>`);
-$("printBtn").onclick=()=>window.print(); $("downloadBtn").onclick=downloadEvidence; $("modalClose").onclick=closeModal; $("modalBackdrop").onclick=closeModal;
-$("heroArchiveImg").addEventListener("error",()=>document.querySelector(".archive-hero")?.classList.add("image-failed"));
-fetch("/api/health").then(r=>r.json()).then(h=>{$("officialCount").textContent=String(h.official_records||0);$("statusDot").classList.toggle("ok",h.ok&&!h.demo_seed_active);}).catch(()=>$("serviceText").textContent="证据服务离线");
+async function boot(){shell();try{const data=await api("/api/catalog");state.catalog=data.streets||[];renderHome()}catch{toast("Catalogue unavailable")}}
+void boot();
