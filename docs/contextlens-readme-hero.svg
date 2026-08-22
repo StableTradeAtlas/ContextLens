@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="520" viewBox="0 0 1440 520" role="img" aria-labelledby="title desc">
+  <title id="title">ContextLens Shanghai Street History Archive</title>
+  <desc id="desc">A dark cartographic banner with nine highlighted Shanghai street dossiers and a bilingual ContextLens title.</desc>
+  <rect width="1440" height="520" fill="#101E2B"/>
+  <path d="M0 373 C225 322 369 431 584 371 S963 267 1440 339" fill="none" stroke="#294451" stroke-width="78" opacity=".7"/>
+  <g fill="none" stroke="#34515D" stroke-width="2" opacity=".92">
+    <path d="M-30 116 L301 116 L301 410"/><path d="M77 40 L77 258 L478 258 L478 540"/>
+    <path d="M194 0 L194 205 L651 205 L651 480"/><path d="M391 0 L391 171 L811 171 L811 520"/>
+    <path d="M550 56 L550 323 L1010 323 L1010 520"/><path d="M732 0 L732 128 L1188 128 L1188 420"/>
+    <path d="M927 22 L927 254 L1370 254"/><path d="M1116 0 L1116 402 L1465 402"/>
+    <path d="M1260 42 L1260 208 L1410 208"/>
+  </g>
+  <g fill="none" stroke="#B84835" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M79 258 L301 258 L301 344"/><path d="M194 116 L391 116"/><path d="M391 205 L550 205 L550 286"/>
+    <path d="M651 171 L811 171"/><path d="M732 323 L927 323"/><path d="M927 128 L1116 128"/>
+    <path d="M1010 254 L1188 254"/><path d="M1116 402 L1260 402"/><path d="M1260 208 L1404 208"/>
+  </g>
+  <g fill="#D5A75B" stroke="#101E2B" stroke-width="5">
+    <circle cx="79" cy="258" r="11"/><circle cx="301" cy="344" r="11"/><circle cx="391" cy="116" r="11"/>
+    <circle cx="550" cy="286" r="11"/><circle cx="811" cy="171" r="11"/><circle cx="927" cy="323" r="11"/>
+    <circle cx="1116" cy="128" r="11"/><circle cx="1188" cy="254" r="11"/><circle cx="1404" cy="208" r="11"/>
+  </g>
+  <rect x="74" y="63" width="770" height="346" rx="8" fill="#101E2B" opacity=".91"/>
+  <text x="112" y="142" fill="#F2EEE5" font-family="Noto Serif SC, Source Han Serif SC, serif" font-size="64" font-weight="700">文脉镜</text>
+  <text x="112" y="207" fill="#D5A75B" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="700">ContextLens</text>
+  <text x="115" y="264" fill="#F2EEE5" font-family="Noto Sans SC, Source Han Sans SC, sans-serif" font-size="25" font-weight="600">上海街道历史档案</text>
+  <text x="115" y="301" fill="#C4D0CF" font-family="Inter, Arial, sans-serif" font-size="20">SHANGHAI STREET HISTORY ARCHIVE</text>
+  <line x1="115" y1="332" x2="634" y2="332" stroke="#B84835" stroke-width="4"/>
+  <text x="115" y="375" fill="#C4D0CF" font-family="Noto Sans SC, Source Han Sans SC, sans-serif" font-size="19">九条完整街道档案 · 双语阅读 · 逐条资料依据</text>
+  <text x="1125" y="468" fill="#D5A75B" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">9 PUBLISHED ROUTES</text>
+</svg>
