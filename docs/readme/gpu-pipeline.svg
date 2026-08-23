@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">ContextLens offline GPU pipeline</title>
+  <desc id="desc">Reviewed bilingual dossiers are encoded with BGE-M3 on a RunPod GPU to create a precomputed related-street graph for the deterministic website.</desc>
+  <rect width="1200" height="360" rx="24" fill="#101e2b"/>
+  <g font-family="Arial, 'Noto Sans SC', sans-serif">
+    <text x="50" y="56" fill="#d5a75b" font-size="16" font-weight="700" letter-spacing="2">DKU LIBRARY–SUPPORTED COMPUTATION</text>
+    <text x="50" y="91" fill="#f2eee5" font-size="27" font-weight="700">Offline bilingual retrieval—never historical generation</text>
+    <g transform="translate(50 137)">
+      <rect width="215" height="132" rx="16" fill="#f2eee5"/>
+      <text x="20" y="35" fill="#b84835" font-size="14" font-weight="700">INPUT</text>
+      <text x="20" y="68" fill="#172321" font-size="18" font-weight="700">9 reviewed dossiers</text>
+      <text x="20" y="94" fill="#607078" font-size="14">Chinese + English text</text>
+      <text x="20" y="115" fill="#607078" font-size="14">sources retained by ID</text>
+    </g>
+    <path d="M281 203h68" stroke="#d5a75b" stroke-width="5"/><path d="M336 191l18 12-18 12" fill="none" stroke="#d5a75b" stroke-width="5"/>
+    <g transform="translate(370 137)">
+      <rect width="232" height="132" rx="16" fill="#2e5a50"/>
+      <text x="20" y="35" fill="#d5a75b" font-size="14" font-weight="700">GPU</text>
+      <text x="20" y="68" fill="white" font-size="18" font-weight="700">BAAI / BGE-M3</text>
+      <text x="20" y="94" fill="#dce7e3" font-size="14">RTX PRO 6000</text>
+      <text x="20" y="115" fill="#dce7e3" font-size="14">30 bilingual evaluation queries</text>
+    </g>
+    <path d="M618 203h68" stroke="#d5a75b" stroke-width="5"/><path d="M673 191l18 12-18 12" fill="none" stroke="#d5a75b" stroke-width="5"/>
+    <g transform="translate(706 137)">
+      <rect width="205" height="132" rx="16" fill="#315a73"/>
+      <text x="20" y="35" fill="#d5a75b" font-size="14" font-weight="700">ARTIFACT</text>
+      <text x="20" y="68" fill="white" font-size="18" font-weight="700">Similarity graph</text>
+      <text x="20" y="94" fill="#dce7ed" font-size="14">precomputed + versioned</text>
+      <text x="20" y="115" fill="#dce7ed" font-size="14">human-readable rationale</text>
+    </g>
+    <path d="M927 203h53" stroke="#d5a75b" stroke-width="5"/><path d="M967 191l18 12-18 12" fill="none" stroke="#d5a75b" stroke-width="5"/>
+    <g transform="translate(1000 137)">
+      <rect width="150" height="132" rx="16" fill="#b84835"/>
+      <text x="20" y="35" fill="#ffe9cb" font-size="14" font-weight="700">WEBSITE</text>
+      <text x="20" y="68" fill="white" font-size="18" font-weight="700">3 related</text>
+      <text x="20" y="92" fill="white" font-size="18" font-weight="700">reviewed streets</text>
+      <text x="20" y="115" fill="#ffe1dc" font-size="13">no live GPU call</text>
+    </g>
+    <text x="50" y="319" fill="#aeb9bd" font-size="15">The model ranks reviewed material; it does not create dates, events, citations, or historical conclusions.</text>
+  </g>
+</svg>

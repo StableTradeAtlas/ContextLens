@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">Bilingual retrieval evaluation results</title>
+  <desc id="desc">Bar chart of Recall at 3: overall 0.90, Chinese 0.90, English 0.80, and mixed-language 1.00.</desc>
+  <rect width="1000" height="430" rx="24" fill="#f2eee5"/>
+  <g font-family="Arial, 'Noto Sans SC', sans-serif">
+    <text x="50" y="58" fill="#172321" font-size="28" font-weight="700">Retrieval evaluation · Recall@3</text>
+    <text x="50" y="88" fill="#607078" font-size="16">30 reviewed queries · 10 Chinese · 10 English · 10 cross-language</text>
+    <g stroke="#c9c6bd" stroke-width="1"><path d="M230 120v240"/><path d="M230 360h690"/><path d="M368 120v240"/><path d="M506 120v240"/><path d="M644 120v240"/><path d="M782 120v240"/><path d="M920 120v240"/></g>
+    <g fill="#607078" font-size="13"><text x="226" y="382">0</text><text x="360" y="382">.2</text><text x="498" y="382">.4</text><text x="636" y="382">.6</text><text x="774" y="382">.8</text><text x="906" y="382">1.0</text></g>
+    <g font-size="16" fill="#172321"><text x="50" y="158">Overall / 总体</text><text x="50" y="218">Chinese / 中文</text><text x="50" y="278">English / 英文</text><text x="50" y="338">Cross-language / 跨语言</text></g>
+    <rect x="230" y="135" width="621" height="30" rx="6" fill="#2e5a50"/><rect x="230" y="195" width="621" height="30" rx="6" fill="#315a73"/><rect x="230" y="255" width="552" height="30" rx="6" fill="#d5a75b"/><rect x="230" y="315" width="690" height="30" rx="6" fill="#b84835"/>
+    <g font-size="16" font-weight="700"><text x="864" y="157" fill="#2e5a50">0.90</text><text x="864" y="217" fill="#315a73">0.90</text><text x="795" y="277" fill="#806325">0.80</text><text x="932" y="337" fill="#b84835">1.00</text></g>
+  </g>
+</svg>
