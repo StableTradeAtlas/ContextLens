@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "purpose": "ContextLens bilingual street-evidence indexing and retrieval evaluation",
+  "started_at": "2026-08-23T13:45:43.178384+00:00",
+  "finished_at": "2026-08-23T13:45:56.995459+00:00",
+  "duration_seconds": 13.817,
+  "pod_id": null,
+  "git_commit": "f1796f870b2e3bdcb872ee130ee1a42204c691dc",
+  "git_tracked_files_clean": true,
+  "working_tree_note": "Generated reports, the corpus manifest, and the isolated environment were expected untracked outputs during execution.",
+  "model": "BAAI/bge-m3",
+  "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "device": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "gpu_memory_gb": 94.97,
+  "cuda_version": "12.8",
+  "torch_version": "2.8.0+cu128",
+  "python_version": "3.12.3",
+  "document_count": 9,
+  "evaluation_query_count": 30,
+  "batch_size": 16,
+  "precision": "model FP16 where supported",
+  "benchmark_repeats": 10,
+  "model_load_seconds": 3.227,
+  "repeated_encode_seconds": 10.409,
+  "documents_per_second": 8.646,
+  "peak_gpu_memory_mb": 5052.98,
+  "configured_rate_usd_per_hour": 2.1,
+  "estimated_compute_cost_usd": 0.0081,
+  "metrics": {
+    "query_count": 30,
+    "recall_at_1": 0.7,
+    "recall_at_3": 0.9,
+    "mean_reciprocal_rank": 0.8172619047619047,
+    "by_language": {
+      "zh": {
+        "query_count": 10,
+        "recall_at_1": 0.7,
+        "recall_at_3": 0.9,
+        "mean_reciprocal_rank": 0.825
+      },
+      "en": {
+        "query_count": 10,
+        "recall_at_1": 0.5,
+        "recall_at_3": 0.8,
+        "mean_reciprocal_rank": 0.6767857142857143
+      },
+      "zh-en": {
+        "query_count": 10,
+        "recall_at_1": 0.9,
+        "recall_at_3": 1.0,
+        "mean_reciprocal_rank": 0.95
+      }
+    }
+  },
+  "source_corpus_sha256": "fe505bd13d1ed7b01cd92579f05a46c75568e8ca59230eba63278fdfc77418a9"
+}

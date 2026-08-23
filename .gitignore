@@ -9,8 +9,11 @@ venv/
 data/raw/
 data/processed/*
 !data/processed/shlibrary_official_snapshot.json
+!data/processed/gpu_corpus_manifest.json
+!data/processed/gpu_related_streets.json
 data/index/
 data/logs/
+.gpu-venv/
 *.sqlite
 *.db
 node_modules/

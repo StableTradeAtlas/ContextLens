@@ -1,0 +1,1440 @@
+{
+  "metrics": {
+    "query_count": 30,
+    "recall_at_1": 0.7,
+    "recall_at_3": 0.9,
+    "mean_reciprocal_rank": 0.8172619047619047,
+    "by_language": {
+      "zh": {
+        "query_count": 10,
+        "recall_at_1": 0.7,
+        "recall_at_3": 0.9,
+        "mean_reciprocal_rank": 0.825
+      },
+      "en": {
+        "query_count": 10,
+        "recall_at_1": 0.5,
+        "recall_at_3": 0.8,
+        "mean_reciprocal_rank": 0.6767857142857143
+      },
+      "zh-en": {
+        "query_count": 10,
+        "recall_at_1": 0.9,
+        "recall_at_3": 1.0,
+        "mean_reciprocal_rank": 0.95
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "zh01",
+      "language": "zh",
+      "query": "法租界道路更名与都市文化",
+      "expected": [
+        "xiafei"
+      ],
+      "expected_rank": 4,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.498889
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.460594
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.452822
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.442738
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.438346
+        },
+        {
+          "street_id": "bund",
+          "score": 0.427585
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.423543
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.414562
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.406604
+        }
+      ]
+    },
+    {
+      "id": "zh02",
+      "language": "zh",
+      "query": "上海犹太难民与会堂",
+      "expected": [
+        "changyang"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "changyang",
+          "score": 0.55363
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.475651
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.475327
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.435429
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.433788
+        },
+        {
+          "street_id": "bund",
+          "score": 0.415389
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.377299
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.373216
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.361174
+        }
+      ]
+    },
+    {
+      "id": "zh03",
+      "language": "zh",
+      "query": "虹口文学文化街区",
+      "expected": [
+        "duolun"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "sichuan",
+          "score": 0.520993
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.515541
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.487254
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.473244
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.441669
+        },
+        {
+          "street_id": "bund",
+          "score": 0.432945
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.429388
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.399577
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.373415
+        }
+      ]
+    },
+    {
+      "id": "zh04",
+      "language": "zh",
+      "query": "外滩金融建筑与滨江天际线",
+      "expected": [
+        "bund"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "bund",
+          "score": 0.690356
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.525829
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.476504
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.464143
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.459247
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.449557
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.42785
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.411047
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.409488
+        }
+      ]
+    },
+    {
+      "id": "zh05",
+      "language": "zh",
+      "query": "静安商业旅馆与公共文化",
+      "expected": [
+        "nanjingwest"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "nanjingwest",
+          "score": 0.577094
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.486006
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.44587
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.441406
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.428533
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.415594
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.375473
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.362291
+        },
+        {
+          "street_id": "bund",
+          "score": 0.344265
+        }
+      ]
+    },
+    {
+      "id": "zh06",
+      "language": "zh",
+      "query": "贝当路国际礼拜堂和公寓生活",
+      "expected": [
+        "hengshan"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.600595
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.497497
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.491435
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.489566
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.470259
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.45562
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.453286
+        },
+        {
+          "street_id": "bund",
+          "score": 0.4143
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.406794
+        }
+      ]
+    },
+    {
+      "id": "zh07",
+      "language": "zh",
+      "query": "里弄与集合住宅的发展",
+      "expected": [
+        "chongqing"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.539856
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.528957
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.51488
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.480037
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.478685
+        },
+        {
+          "street_id": "bund",
+          "score": 0.451133
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.447786
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.445063
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.416759
+        }
+      ]
+    },
+    {
+      "id": "zh08",
+      "language": "zh",
+      "query": "花园住宅与亚尔培坊",
+      "expected": [
+        "shaanxi"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "shaanxi",
+          "score": 0.551896
+        },
+        {
+          "street_id": "bund",
+          "score": 0.453932
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.446234
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.440484
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.437467
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.431358
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.426297
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.404181
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.401295
+        }
+      ]
+    },
+    {
+      "id": "zh09",
+      "language": "zh",
+      "query": "四川北路商业与革命活动",
+      "expected": [
+        "sichuan"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "sichuan",
+          "score": 0.661717
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.514518
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.48609
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.461068
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.434106
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.414643
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.414048
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.41392
+        },
+        {
+          "street_id": "bund",
+          "score": 0.388728
+        }
+      ]
+    },
+    {
+      "id": "zh10",
+      "language": "zh",
+      "query": "霞飞路出版书局和美术展览",
+      "expected": [
+        "xiafei"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "xiafei",
+          "score": 0.578834
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.440303
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.424979
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.423476
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.408811
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.401983
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.399961
+        },
+        {
+          "street_id": "bund",
+          "score": 0.3873
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.387189
+        }
+      ]
+    },
+    {
+      "id": "en01",
+      "language": "en",
+      "query": "Jewish refugees and a synagogue on Ward Road",
+      "expected": [
+        "changyang"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "changyang",
+          "score": 0.5769
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.436985
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.436755
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.427525
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.42383
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.421
+        },
+        {
+          "street_id": "bund",
+          "score": 0.370633
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.352341
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.343279
+        }
+      ]
+    },
+    {
+      "id": "en02",
+      "language": "en",
+      "query": "literary culture and revolutionary sites in Hongkou",
+      "expected": [
+        "duolun"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "duolun",
+          "score": 0.516304
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.461729
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.449173
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.428478
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.418245
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.418111
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.390406
+        },
+        {
+          "street_id": "bund",
+          "score": 0.371825
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.33288
+        }
+      ]
+    },
+    {
+      "id": "en03",
+      "language": "en",
+      "query": "riverfront finance architecture and Shanghai skyline",
+      "expected": [
+        "bund"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "bund",
+          "score": 0.591553
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.50491
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.472725
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.45678
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.456122
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.442116
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.4394
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.436866
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.402093
+        }
+      ]
+    },
+    {
+      "id": "en04",
+      "language": "en",
+      "query": "Bubbling Well Road commerce hotels and civic culture",
+      "expected": [
+        "nanjingwest"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "nanjingwest",
+          "score": 0.54966
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.468748
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.447363
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.444078
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.438393
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.430237
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.420072
+        },
+        {
+          "street_id": "bund",
+          "score": 0.379646
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.371844
+        }
+      ]
+    },
+    {
+      "id": "en05",
+      "language": "en",
+      "query": "Avenue Petain apartments church and public life",
+      "expected": [
+        "hengshan"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.471861
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.456497
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.449166
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.441261
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.420812
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.403655
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.391614
+        },
+        {
+          "street_id": "bund",
+          "score": 0.381055
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.36878
+        }
+      ]
+    },
+    {
+      "id": "en06",
+      "language": "en",
+      "query": "lane housing and modern apartment development",
+      "expected": [
+        "chongqing"
+      ],
+      "expected_rank": 7,
+      "ranking": [
+        {
+          "street_id": "shaanxi",
+          "score": 0.540906
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.528131
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.507418
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.505189
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.486936
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.479539
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.477588
+        },
+        {
+          "street_id": "bund",
+          "score": 0.469494
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.458577
+        }
+      ]
+    },
+    {
+      "id": "en07",
+      "language": "en",
+      "query": "garden residences and King Albert Lane",
+      "expected": [
+        "shaanxi"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "nanjingwest",
+          "score": 0.489473
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.48497
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.458463
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.436868
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.428426
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.425558
+        },
+        {
+          "street_id": "bund",
+          "score": 0.422479
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.394635
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.387347
+        }
+      ]
+    },
+    {
+      "id": "en08",
+      "language": "en",
+      "query": "commercial street worker housing and revolutionary history",
+      "expected": [
+        "sichuan"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "xiafei",
+          "score": 0.540755
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.516504
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.516249
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.497641
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.475576
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.457075
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.452668
+        },
+        {
+          "street_id": "bund",
+          "score": 0.444435
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.395216
+        }
+      ]
+    },
+    {
+      "id": "en09",
+      "language": "en",
+      "query": "Avenue Joffre publishing art and metropolitan culture",
+      "expected": [
+        "xiafei"
+      ],
+      "expected_rank": 8,
+      "ranking": [
+        {
+          "street_id": "duolun",
+          "score": 0.449787
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.439597
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.42583
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.417864
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.417078
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.413421
+        },
+        {
+          "street_id": "bund",
+          "score": 0.405667
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.399477
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.352384
+        }
+      ]
+    },
+    {
+      "id": "en10",
+      "language": "en",
+      "query": "Cathay Hotel signal tower and Huangpu River",
+      "expected": [
+        "bund"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "nanjingwest",
+          "score": 0.457376
+        },
+        {
+          "street_id": "bund",
+          "score": 0.449876
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.445146
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.420873
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.418203
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.413306
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.409062
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.391041
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.378624
+        }
+      ]
+    },
+    {
+      "id": "cross01",
+      "language": "zh-en",
+      "query": "提篮桥 Jewish refuge history",
+      "expected": [
+        "changyang"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "changyang",
+          "score": 0.576209
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.381161
+        },
+        {
+          "street_id": "bund",
+          "score": 0.343207
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.333135
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.323402
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.315449
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.30507
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.291156
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.278472
+        }
+      ]
+    },
+    {
+      "id": "cross02",
+      "language": "zh-en",
+      "query": "窦乐安路 literary district",
+      "expected": [
+        "duolun"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "duolun",
+          "score": 0.549723
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.462427
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.429144
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.417157
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.398533
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.389282
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.387805
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.37569
+        },
+        {
+          "street_id": "bund",
+          "score": 0.329018
+        }
+      ]
+    },
+    {
+      "id": "cross03",
+      "language": "zh-en",
+      "query": "外滩 waterfront infrastructure",
+      "expected": [
+        "bund"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "bund",
+          "score": 0.613518
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.459937
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.398054
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.392409
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.388167
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.371836
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.371217
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.358753
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.337574
+        }
+      ]
+    },
+    {
+      "id": "cross04",
+      "language": "zh-en",
+      "query": "静安寺路 Bubbling Well Road",
+      "expected": [
+        "nanjingwest"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "nanjingwest",
+          "score": 0.64642
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.51283
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.478862
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.459776
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.427581
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.425823
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.409971
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.381511
+        },
+        {
+          "street_id": "bund",
+          "score": 0.371669
+        }
+      ]
+    },
+    {
+      "id": "cross05",
+      "language": "zh-en",
+      "query": "贝当路 Avenue Petain",
+      "expected": [
+        "hengshan"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.522845
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.471029
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.437415
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.414494
+        },
+        {
+          "street_id": "bund",
+          "score": 0.406135
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.396553
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.394396
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.394155
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.32659
+        }
+      ]
+    },
+    {
+      "id": "cross06",
+      "language": "zh-en",
+      "query": "灵宝路 lane housing",
+      "expected": [
+        "chongqing"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "chongqing",
+          "score": 0.515208
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.484815
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.483791
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.481493
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.45542
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.431294
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.419632
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.401025
+        },
+        {
+          "street_id": "bund",
+          "score": 0.336838
+        }
+      ]
+    },
+    {
+      "id": "cross07",
+      "language": "zh-en",
+      "query": "亚尔培坊 garden residences",
+      "expected": [
+        "shaanxi"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "shaanxi",
+          "score": 0.503687
+        },
+        {
+          "street_id": "bund",
+          "score": 0.386032
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.38329
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.38285
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.376845
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.373982
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.367657
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.342146
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.31878
+        }
+      ]
+    },
+    {
+      "id": "cross08",
+      "language": "zh-en",
+      "query": "北四川路 commercial culture",
+      "expected": [
+        "sichuan"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "sichuan",
+          "score": 0.623812
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.536662
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.491511
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.471836
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.463027
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.448559
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.439726
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.419297
+        },
+        {
+          "street_id": "bund",
+          "score": 0.402385
+        }
+      ]
+    },
+    {
+      "id": "cross09",
+      "language": "zh-en",
+      "query": "霞飞路 Avenue Joffre",
+      "expected": [
+        "xiafei"
+      ],
+      "expected_rank": 2,
+      "ranking": [
+        {
+          "street_id": "hengshan",
+          "score": 0.485387
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.478125
+        },
+        {
+          "street_id": "changyang",
+          "score": 0.409943
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.409205
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.400003
+        },
+        {
+          "street_id": "bund",
+          "score": 0.389033
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.369422
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.358588
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.298114
+        }
+      ]
+    },
+    {
+      "id": "cross10",
+      "language": "zh-en",
+      "query": "华德路 Ward Road prison synagogue",
+      "expected": [
+        "changyang"
+      ],
+      "expected_rank": 1,
+      "ranking": [
+        {
+          "street_id": "changyang",
+          "score": 0.582537
+        },
+        {
+          "street_id": "nanjingwest",
+          "score": 0.404544
+        },
+        {
+          "street_id": "duolun",
+          "score": 0.389554
+        },
+        {
+          "street_id": "xiafei",
+          "score": 0.364436
+        },
+        {
+          "street_id": "shaanxi",
+          "score": 0.360143
+        },
+        {
+          "street_id": "hengshan",
+          "score": 0.348941
+        },
+        {
+          "street_id": "sichuan",
+          "score": 0.285471
+        },
+        {
+          "street_id": "bund",
+          "score": 0.275642
+        },
+        {
+          "street_id": "chongqing",
+          "score": 0.273416
+        }
+      ]
+    }
+  ]
+}

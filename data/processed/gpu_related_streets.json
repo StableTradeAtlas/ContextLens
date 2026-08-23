@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "method": "BAAI/bge-m3 cosine similarity; GPU-generated and editorially bounded to published dossiers",
+  "model": "BAAI/bge-m3",
+  "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "generated_at": "2026-08-23T13:45:56.995459+00:00",
+  "related": {
+    "xiafei": [
+      {
+        "street_id": "chongqing",
+        "score": 0.714168,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "shaanxi",
+        "score": 0.711721,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.654814,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      }
+    ],
+    "hengshan": [
+      {
+        "street_id": "nanjingwest",
+        "score": 0.743472,
+        "reason_zh": "共同主题：近代建筑",
+        "reason_en": "Shared themes: Architecture"
+      },
+      {
+        "street_id": "shaanxi",
+        "score": 0.664859,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "xiafei",
+        "score": 0.654272,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      }
+    ],
+    "chongqing": [
+      {
+        "street_id": "sichuan",
+        "score": 0.727905,
+        "reason_zh": "共同主题：里弄住宅",
+        "reason_en": "Shared themes: Lane housing"
+      },
+      {
+        "street_id": "xiafei",
+        "score": 0.714168,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.64296,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      }
+    ],
+    "shaanxi": [
+      {
+        "street_id": "xiafei",
+        "score": 0.711721,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "hengshan",
+        "score": 0.664859,
+        "reason_zh": "共同主题：路名沿革",
+        "reason_en": "Shared themes: Renaming"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.656198,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      }
+    ],
+    "nanjingwest": [
+      {
+        "street_id": "hengshan",
+        "score": 0.743472,
+        "reason_zh": "共同主题：近代建筑",
+        "reason_en": "Shared themes: Architecture"
+      },
+      {
+        "street_id": "sichuan",
+        "score": 0.715701,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Shared themes: Commerce"
+      },
+      {
+        "street_id": "duolun",
+        "score": 0.662016,
+        "reason_zh": "共同主题：近代建筑",
+        "reason_en": "Shared themes: Architecture"
+      }
+    ],
+    "duolun": [
+      {
+        "street_id": "changyang",
+        "score": 0.667111,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.662016,
+        "reason_zh": "共同主题：近代建筑",
+        "reason_en": "Shared themes: Architecture"
+      },
+      {
+        "street_id": "sichuan",
+        "score": 0.655945,
+        "reason_zh": "共同主题：红色遗迹",
+        "reason_en": "Shared themes: Revolutionary sites"
+      }
+    ],
+    "sichuan": [
+      {
+        "street_id": "chongqing",
+        "score": 0.727905,
+        "reason_zh": "共同主题：里弄住宅",
+        "reason_en": "Shared themes: Lane housing"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.715701,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Shared themes: Commerce"
+      },
+      {
+        "street_id": "duolun",
+        "score": 0.655945,
+        "reason_zh": "共同主题：红色遗迹",
+        "reason_en": "Shared themes: Revolutionary sites"
+      }
+    ],
+    "changyang": [
+      {
+        "street_id": "duolun",
+        "score": 0.667111,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      },
+      {
+        "street_id": "nanjingwest",
+        "score": 0.661249,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      },
+      {
+        "street_id": "hengshan",
+        "score": 0.639005,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      }
+    ],
+    "bund": [
+      {
+        "street_id": "nanjingwest",
+        "score": 0.65124,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      },
+      {
+        "street_id": "hengshan",
+        "score": 0.622495,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      },
+      {
+        "street_id": "sichuan",
+        "score": 0.620332,
+        "reason_zh": "双语档案内容具有语义关联",
+        "reason_en": "Semantically related bilingual dossier content"
+      }
+    ]
+  }
+}

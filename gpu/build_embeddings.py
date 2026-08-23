@@ -24,6 +24,12 @@ def git_value(*args: str) -> str:
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
 
 
+def tracked_files_clean() -> bool:
+    unstaged = subprocess.run(["git", "diff", "--quiet"], cwd=ROOT, check=False).returncode
+    staged = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT, check=False).returncode
+    return unstaged == 0 and staged == 0
+
+
 def rank_metrics(results: list[dict]) -> dict:
     reciprocal = []
     hit1 = hit3 = 0
@@ -106,7 +112,8 @@ def main() -> None:
         "schema_version": "1.0", "purpose": "ContextLens bilingual street-evidence indexing and retrieval evaluation",
         "started_at": started_at.isoformat(), "finished_at": finished_at.isoformat(), "duration_seconds": round(duration, 3),
         "pod_id": os.environ.get("RUNPOD_POD_ID") or os.environ.get("HOSTNAME"),
-        "git_commit": git_value("rev-parse", "HEAD"), "git_status_clean": not bool(git_value("status", "--porcelain")),
+        "git_commit": git_value("rev-parse", "HEAD"), "git_tracked_files_clean": tracked_files_clean(),
+        "working_tree_note": "Generated reports, the corpus manifest, and the isolated environment are expected untracked outputs during execution.",
         "model": MODEL, "model_revision": model_revision, "device": torch.cuda.get_device_name(0),
         "gpu_memory_gb": round(props.total_memory / 1024**3, 2), "cuda_version": torch.version.cuda,
         "torch_version": torch.__version__, "python_version": platform.python_version(),

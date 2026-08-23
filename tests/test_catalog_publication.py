@@ -3,11 +3,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.catalog import CATALOG
+from app.catalog import CATALOG, catalog_payload
 from app.place_investigation import investigate_address, resolve_place
 
 
 def run() -> None:
+    payload = catalog_payload()
+    assert payload["semantic_relations"]["available"] is True
+    public_ids = {street["id"] for street in CATALOG}
+    for street in payload["streets"]:
+        assert len(street["related"]) == 3, street["id"]
+        assert all(item["street_id"] in public_ids - {street["id"]} for item in street["related"])
     assert 3 <= len(CATALOG) <= 12
     seen = set()
     for street in CATALOG:

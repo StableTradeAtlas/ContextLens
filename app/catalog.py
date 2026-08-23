@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 """Editorial publication manifest for the public ContextLens catalogue.
 
 Only entries that pass the public full-loop tests belong here.  The broader
@@ -84,4 +87,18 @@ CATALOG = [
 
 
 def catalog_payload() -> dict:
-    return {"version": "2026.08", "count": len(CATALOG), "streets": CATALOG}
+    relation_path = Path(__file__).resolve().parents[1] / "data/processed/gpu_related_streets.json"
+    relation_payload = json.loads(relation_path.read_text()) if relation_path.exists() else {}
+    relations = relation_payload.get("related", {})
+    streets = []
+    for item in CATALOG:
+        street = dict(item)
+        street["related"] = relations.get(item["id"], [])
+        streets.append(street)
+    return {
+        "version": "2026.08-gpu1", "count": len(streets), "streets": streets,
+        "semantic_relations": {
+            "available": bool(relations), "method": relation_payload.get("method"),
+            "model": relation_payload.get("model"), "generated_at": relation_payload.get("generated_at"),
+        },
+    }

@@ -216,6 +216,7 @@ python3 tests/test_catalog_publication.py
 PYTHONPATH=. python3 tests/test_media_registry.py
 python3 tests/test_place_investigation.py
 python3 tests/test_agent.py
+python3 tests/test_gpu_artifacts.py
 ```
 
 | Validation surface | Current release |
@@ -227,6 +228,27 @@ python3 tests/test_agent.py
 | Place-investigation regression | ✅ Passed |
 | Evidence-agent smoke test | ✅ Passed |
 | Core operation without an LLM | ✅ Supported |
+
+## ✦ GPU-assisted bilingual retrieval
+
+DKU Library funding supported one reproducible offline retrieval experiment on
+a RunPod **NVIDIA RTX PRO 6000 Blackwell Server Edition**. BGE-M3 encoded the
+nine published bilingual dossiers and evaluated 30 Chinese, English, and
+mixed-language questions. The resulting graph now orders the three related
+streets shown at the end of each dossier.
+
+| Recorded result | Value |
+|---|---:|
+| Recall@1 | 0.70 |
+| Recall@3 | 0.90 |
+| Mixed Chinese–English Recall@3 | 1.00 |
+| Peak allocated GPU memory | 5,052.98 MB |
+| Measured model-run duration | 13.817 s |
+
+The computation does **not** generate historical claims. Related routes remain
+limited to the nine editorially reviewed dossiers, and the public website has
+no live GPU dependency. See the [full GPU report](reports/gpu/contextlens_gpu_report.md)
+and [reproduction scripts](gpu/README.md).
 
 ## ✦ Research and privacy boundaries
 

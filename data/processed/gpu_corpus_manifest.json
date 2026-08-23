@@ -1,0 +1,504 @@
+{
+  "schema_version": "1.0",
+  "source_snapshot_sha256": "831f22f6a3ad086fe7a3b731d40b705bccad1f720c04f63946b5167c85b5053b",
+  "document_count": 9,
+  "query_count": 30,
+  "documents": [
+    {
+      "street_id": "xiafei",
+      "name_zh": "霞飞路 · 淮海中路",
+      "name_en": "Avenue Joffre · Huaihai Middle Road",
+      "themes_zh": [
+        "路名沿革",
+        "出版文化",
+        "城市生活"
+      ],
+      "themes_en": [
+        "Renaming",
+        "Publishing",
+        "Urban life"
+      ],
+      "matched_record_ids": [
+        "shlib-014f563937b0",
+        "shlib-9602997931bb",
+        "shlib-9cf7011470dc",
+        "shlib-b68a8d2613cb",
+        "shlib-5a4fe1e023d6",
+        "shlib-b05f98260e9f",
+        "shlib-0db144939575",
+        "shlib-f61eb3d642ef",
+        "shlib-2c14dd99e0bd",
+        "shlib-3d6732172bc2",
+        "shlib-3b5c7c5226f5",
+        "shlib-7b8876382c81",
+        "shlib-648060583e73",
+        "shlib-30a21dbdd3cb",
+        "shlib-446c0a474aa0",
+        "shlib-469913494ff5",
+        "shlib-bac444d3b1da",
+        "shlib-2807f40ef116",
+        "shlib-a95800777f98",
+        "shlib-8b1154f71464",
+        "shlib-a13b01fd075e",
+        "shlib-e0649e457e2f",
+        "shlib-fe45ffdd142f",
+        "shlib-cfca8753097f"
+      ],
+      "matched_record_count": 24,
+      "text": "街道 / Street: 霞飞路 · 淮海中路 / Avenue Joffre · Huaihai Middle Road\n区域 / District: 黄浦区 / 徐汇区 / Huangpu / Xuhui\n年代 / Coverage: 1901—至今 / 1901—present\n中文简介: 从西江路、宝昌路到霞飞路、林森中路与淮海中路，六次名称阶段串联起商业、出版与都市文化。\nEnglish overview: Six documented name periods connect the street’s commercial, publishing and metropolitan history.\n主题 / Themes: 路名沿革；出版文化；城市生活 / Renaming; Publishing; Urban life\n林森中路。Source URI: http://data.library.sh.cn/entity/road/611xxq4ewmzn0loo\n霞飞路。Source URI: http://data.library.sh.cn/entity/road/vus34wj1kewtloqv\n淮中大楼。Source URI: http://data.library.sh.cn/entity/architecture/a0cn6jzj8mo5g3i6\n上海别墅。Source URI: http://data.library.sh.cn/entity/architecture/ohde1aibkmezy0cn\n国泰电影院。Source URI: http://data.library.sh.cn/entity/architecture/5n2kx2v82uuujr6o\n永业大楼。Source URI: http://data.library.sh.cn/entity/architecture/7uy8t77giamnnn52\n上方花园。Source URI: http://data.library.sh.cn/entity/architecture/i552u5ohprzmxn4s\n培文公寓。Source URI: http://data.library.sh.cn/entity/architecture/un7l2fts7gnk0ta5\n新康花园。Source URI: http://data.library.sh.cn/entity/architecture/vty4fve4lviwvlxd\n卢湾区职业教育中心。Source URI: http://data.library.sh.cn/entity/architecture/xde8xeagdd6wc5uk\n康绥公寓。Source URI: http://data.library.sh.cn/entity/architecture/d14keohaa8a5btc7\n花园饭店。Source URI: http://data.library.sh.cn/entity/architecture/mmwlfr4kvzftzl4h\n淮海中路。Source URI: http://data.library.sh.cn/entity/road/m5k6iust3du2ditb\n潘兴公寓。Source URI: http://data.library.sh.cn/entity/architecture/38cfab63w6d20eay\n上海市军事管制委员会批准成立上海市古代文物管理委员会。1949年9月7日上海市军事管制委员会批准成立上海市古代文物管理委员会，属市人民政府高等教育处，会址设在霞飞路（今淮海中路）1708号。1949年9月17日，召开第一次委员会议。聘请李亚农、徐森玉、柳诒徵、沈尹默等10人为委员。李亚农为主任委员。 1950年1月20日上海市人民政府批准市古代文物管理委员会改名为上海市文物管理委员会，主任委员李亚农、副主任委员徐森玉。\n康健书局创办。康健书局创办于1934年，至1950年存在，设址于霞飞路（今淮海中路）436号，经理陈振民。曾出版《康健丛书》《热力疗病法》等医学图书。\n生活书店在上海创办。生活书店1932年7月1日在上海创立，创办人邹韬奋。生活书店的前身是《生活》周刊社。《生活》周刊创刊于1925年10月，本为中华职业教育社机关刊物。后独立经营，邹韬奋任主编，设址在环龙路（今南昌路）环龙别业（今南昌别业）2号。周刊社设有书报代办部，不仅发行本版书刊，还为读者代订外版书刊。1932年以此为基础成立生活书店，店址在陶尔斐斯路（今兴业路）42号，后迁至霞飞路（今淮海中路）桃源坊。1934年再迁到福州路384弄复兴里4号。生活书店成立时邹韬奋为经理，徐伯昕为副经理，胡愈之实际上也是创始人之一。生活书店在业务上分设编辑部、经理部、出版部、营业部、财务部等。抗日战争爆发后，生活书店总店迁住武汉。总店离沪后，上海分店由王泰雷任经理。在福州路378号开设“远东图书杂志公司”（后改名为兄弟图书公司），进行门市供应。书店的编辑、校对、出版、财务等内部工作则秘密设在爱多亚路（今延安东路）河南路口中汇大楼和萨坡赛路（今淡水路）18号。同时，上海分店的重要任务是利用上海的纸张、印刷条件大量印制书籍供应内地。沦陷后，兄弟图书公司曾被日军查封，重新营业后，缩小业务范围，经营文具仪器。以后招股成立新光百货公司，经营百货的批发、零售。新光公司后出盘给一个商人作西药房。抗日战争胜利后，生活书店在上海吕班路（今重庆南路）6号复业，另在迈尔西爱路（今茂名南路）余庆里1号设立编辑部。生活书店总店在武汉时，将总店改为总管理处，后迁至重庆冉家巷16号。1941年后又迁住香港。1948年10月26日，生活、读书、新知三店在香港完成全面合并工作，正式组成生活•读书•新知三联书店。生活书店先后出版的杂志共有29种，早期有《生活》周刊，《新生》周刊，以后又出版了《大众生活》周刊、《永生》周刊、《生活星期刊》、《国民》周刊等。还有《文学》月刊、《世界知识》半月刊、《太白》半月刊、《译文》月刊、《妇女生活》半月刊、《生活教育》半月刊、《光明》半月刊、《中华公论》月刊、《生活知识》半月刊、《新知识》半月刊、《新学识》半月刊、《读书与出版》月刊等。出版图书约有1000多种，成为国民党统治区内坚强的进步文化阵地。其出书内容主要涉及马列主义、哲学、社会科学、政治法律、经济、文化教育、语言文字、文学艺术、历史地理、自然科学等。图书的类型有丛书、丛刊和单行本。丛书丛刊主要有:《世界学术名著译丛》、《青年自学丛书》、《百科小译丛》、《世界知识丛书》、《时事问题丛刊》、《黑白丛书》、《妇女生活丛书》、《创作文库》、《世界文库》、《文学丛书》、《新世纪丛刊》、《少年文库》等20余种。生活书店在经营管理上有一套完整的科学的民主管理制度，对内为合作社组织，是集体所有制性质。合作社章程中原则规定：经营集体化，管理民主化，盈利归全体。领导机构为:理事会、人事委员会和监察委员会，成员由社员大会民主选举产生。1933年生活书店注册时，额定资金为5万元，1937年增加至10万元。职工人数由二十几人发展到500人。书店拥有6万户邮购读者，存款15万元，成为资金来源之一。至1939年，先后在武汉、广州、西安、重庆、长沙、成都、桂林、兰州、贵阳、南昌、昆明、福州等处开设分店55个，发行据点遍及全国14个省份（除新疆、西藏、青海、宁夏外），还在香港、新加坡建立分支店。以后，各地分店纷纷被查封，1941年后，只剩下重庆分店。生活书店建立了不少外围出版机构。在投资合营与化名自营的出版机构中，分一、二、三线出版机构。第一线出版旗帜鲜明的政治读物，第二线偏重于理论性著作和中外文艺作品，第三线主要出版实用书籍和学习参考书。生活书店在上海曾化名的出版机构有：远东图书公司、新生图书服务社、兄弟图书公司、骆驼书店、民主周刊社、燕赵社、致用书店、实用书店、士林书店。在上海投资合营的出版机构有：华夏书店、知识出版社、拂晓社、丘引社、峨嵋出版社、自由出版社、通惠印书馆、南国出版社。\n女子书店创办。女子书店创办于1931年，至1937年存在，设址于编辑部在霞飞路（今淮海中路）铭德里8号，发行部在圆明园路，创办人姚名达。曾出版《女子历史丛书》《女子卫生丛书》《女子职业丛书》《女子文学丛书》《女子文艺丛书》等。\n刘海粟在尚贤堂办近作展览会，王一亭为其题字。刘海粟在尚贤堂办近作展览会，王一亭为其题字。《刘海粟近作展览会开幕△会场设霞飞路尚贤堂》：“画家刘海粟，精研中西艺术，年来潜心创作，杰构甚多。兹定于月之十七日假尚贤堂举行近作展览会七。刘师作风，倾向于后期印象派，学者如蔡元培、胡适、徐志摩诸君极钦佩之。此次陈列者，多精心之作，且有一部分为售品。”(1927年12月16日时报)题赠刘海粟：“山龙华虫。大作以浑厚之笔写未来之派，逸气横生，神意独到，为摘书经字张之。海粟先生雅鉴，吴兴王震。”(1927年12月is日上海画报)\n光华大学成立。1925年圣约翰大学的部分学生因游行声援“五卅”运动，遭校长卜方济开除。一些师生愤而离开。离校的师生在学生家长的支持下，新建光华大学，定6月3日为校庆。董事会成员有张寿镛、黄炎培、虞洽卿等，另聘请马相伯、顾维钧等多位名誉董事。初期租借霞飞路（今淮海中路）临时校舍，张寿镛任校长，设文、理、商、工4科及附属中学。次年1月新校舍在大西路落成。光华实行学分制并积点制，修完学分和积点，即授予学士学位。“八·一三”校舍被毁，图书仪器损失惨重，只得另觅上课地址。太平洋战争爆发后，光华大学校长张寿镛为避免向敌伪登记，将原来的文学院对外改称诚正文学社，理商学院改为格致理商学社。抗战胜利后，光华复校。次年秋，迁至欧阳路上课，学生达1700人，创历史最高纪录。实业界人士纷纷捐资重建光华宿舍楼、图书馆、又修建游泳池，恢复生物、物理、化学实验室。原来的学科设置全部恢复，又添设法律系、土木专修科、铁路专修科，并为保险公司培训专业保险人员。\n宋庆龄迁入上海淮海中路1843号居住，现为上海宋庆龄故居。。在徐汇区淮海中路1843号（原霞飞路1803号），是一幢白色的西式建筑，砖木结构，船形假三层，建筑面积700平方米，占地面积4333平方米。始建于20世纪20年代初期，是一个外籍船主建造的私人别墅，后归德侨威未起所有。1940年7月，威未起将此住宅售与银行家朱博泉。抗战胜利后，朱被认为有附敌嫌疑，该房产被国民政府作为逆产收归国有。先由蒋纬国使用，后交国民党中央信托局苏浙皖区敌伪产业清理处管辖，作中央信托局招待所之用。1948年，拨归宋庆龄居住。同年春，宋庆龄从靖江路45号（今桃江路45号）迁居于此。从1948年到1963年，宋庆龄在这里工作、生活达15年之久。上海宋庆龄故居为国家重点文物保护单位、上海宋庆龄故居纪念馆为国家二级博物馆、上海市爱国主义教育基地。 新中国建立后，宋庆龄任中央人民政府副主席、全国政协副主席、全国人大常委会副委员长等职。淮海中路1843号是宋庆龄在上海从事国务活动的重要场所。在这里，会见过毛泽东、刘少奇、周恩来、朱德以及林伯渠、董必武、陈毅、邓颖超等党和国家领导人；会见过印度尼西亚总统苏加诺、朝鲜民主主义人民共和国首相金日成、苏联最高苏维埃主席团主席伏罗希洛夫、缅甸总理吴努、印度副总统达克里希南、锡兰总理班达拉奈克夫人等外国元首和贵宾。宋庆龄领导的保卫世界和平运动和中国福利会的许多重大活动都曾在这里举行。1950年代初期，在主楼旁建造了一幢辅楼，供宋庆龄身边工作人员办公之用。1988年在保持建筑原貌不变的前提下，对主楼进行了大修。宋庆龄逝世后，上海宋庆龄故居于1981年10月9日正式建馆，实行内部开放。展品全部是宋庆龄生前使用的物品，其摆设完全依照宋庆龄生前原样。1981年公布为上海市文物保护单位。\n中华女子美术学校在上海开办。中华女子美术学校在上海开办。校址在霞飞路(今淮海中路)宝康里。\n新康花园建成。新康花园位于霞飞路（今淮海中路）1273弄1－22号、辣斐德路（今复兴中路）1380弄1－4号，坐落在淮海中路南侧，复兴中路北侧，近毕勋路（今汾阳路）、宝建路（今宝庆路），与上方花园相邻，占地面积19.52亩（13013.3平方米）。建于1916年，原为英籍犹太人开设的新康洋行建造的私人花园，园内有网球场、游泳池等当时一流设施。1933年改建成由15幢公寓组成的建筑群，为公寓式花园里弄。其中有砖木结构2层公寓11幢，建筑面积4169平方米；混合结构5层公寓4幢，平房汽车间及附屋25间，合计建筑面积9318平方米。1937年后曾改名欢乐庭院。1949年9月10日更名为新康花园。总体布置是由15幢公寓组成的建筑群，有1条宽6.5米、南北贯通的主通道和8条5.5米宽、东西尽端的支通道组成总体平面。15幢公寓分南北两部分，布置在主通道两侧。南部即复兴中路1360弄1－4号，为四角对峙的4幢5层混合结构点状型公寓，呈正方形，对角耸立，间距宽大。公寓中间设公用大庭园，汽车间布置在主通道中段。点状型公寓单体平面，一、二、三层每层有2套2室户，共24套，四、五层为2套跃层4室户，计8套；北部即淮海中路1273弄1－22号，为2层砖木结构，西班牙式公寓11幢。该公寓单体平面每层1套4室户，合计22套，每套有独用出入口，房间为横向联列布置，卧室、起居室均在前部，坐北朝南，后部为餐室、厨房间、佣人卧室。起居室部位在中间，左右为卧室，均设内阳台。每幢公寓底层有汽车间，上面是晒台。建筑式样新颖、考究，室内装饰精致，隔音隔热，硬木地板，煤卫设备齐全。寓外环境优雅，门前有小花园，在南北通道两侧花园内，种有高大塔形雪松，北道口有一大块长方形绿化园地，松杉挺立，花木掩映。西班牙式2层公寓分层分户进出，平面布置采用套间式，每户有2套卫生间，起居室前有大阳台。每幢公寓底层有汽车库，房前有小花园。点状式5层公寓单体平面，一至三层每层为两套2室户，四、五层为两套跃层4室户。新康花园建筑式样新颖、室内装饰精致、煤卫设施齐全，室外环境优美，尤其是种植高大的雪松，苍翠挺拔，营造出幽静的氛围。北部5层公寓楼4幢，在复兴中路以北一块方形的土地上，每幢各居一角，大门均面向中央的花坛。花园内主要房间的面积一般为25～35平方米，一至三楼有二、三居室单元，四五层为跃层式4室户，立面的一、二层加横线条，上3层为素面，顶部是平台。南部5层公寓位于陕西南路与复兴中路转角处，由于地形颇不规则，所以总体布置采用双单元点状错列式，弄内有同类型的双单元4层楼公寓16幢，32个单元，每个单元有3室户8套，合计256套。每套一户居住，包括起居室、卧室、餐室、厨房、浴厕间和佣人卧室等。布局分前后两段，前面为主要房间，室内均有壁橱，卧室与浴厕间相通。隔墙为起居室，在起居室南端设有半圆形八角亭相通，起居室与餐室之间设活动拉门分隔。后面是次要房间，即厨房间、佣人卧室及小件套卫生间，以及佣人使用的便梯。公寓在底层入口处均设有小门厅，2层以上不另设门厅，直达扶梯间。每幢公寓均单独设锅炉间、煤仓以及垃圾管道等。公寓间距为1∶0.5～1∶0.8不等，由于利用点状空隙得当，通风采光不受影响，并结合地形布置汽车间和道路，空隙土地植上花卉和树木，四季常青，并有花岗石砌筑的人行小道，纵横在绿茵草坪之间，形成一个优雅的居住环境。著名油画家颜文梁的老宅子在新康花园内。\n新渔阳里建成。渔阳里位于淮海中路567弄，1915年建造。该弄共有5埭房屋，南向平行排列，除沿淮海路作商店外，余为2层双开间1厢房住宅。主弄与支弄的尽端有过街楼。住宅围墙高度与二层窗台齐。客堂前装有8扇木制花格落地长窗。前厢房南向，窗外装有木百页窗，楼下地坪为花砖，楼上为木地板，用挂落分隔为前、后厢房。厨房一边设小天井通后门。二层通过小天井上楼梯到晒台。厨房与后厢房顶上为2间亭子间。前楼与前厢房窗台下装活络木栅，外设铜质雕花栏杆。建筑外墙为清水红砖墙，屋顶上铺黑色蝴蝶瓦。中国第一个有共产主义色彩的青年组织——上海社会主义青年团旧址，团组织早期革命活动的重要场所，就位于霞飞路渔阳里6号（淮海中路567弄6号），1961年3月4日被列为全国重点文物保护单位。2003年4月，在建团八十周年前夕，中共上海市委和团中央决定对旧址进行全面地整修扩建，并建立旧址纪念馆。建成后的“渔阳里”团中央机关旧址纪念馆将保留石库门建筑的风格，6号楼旧址将恢复原样，原来的办公室、教室、宿舍和打字机等文物都将原物原貌重现。1－5号楼将整修扩建成拥有4个展区的纪念馆，展区面积共639平方米。经整修扩建的团中央机关旧址将成为全国团员青年进行爱国主义教育、革命传统教育和团史教育的一个新基地。馆内以图片资料为主、实物为辅，充分利用声、光、电以及蜡像等现代展示技术，再现共青团诞生前后的青运史。另外还专辟场地，让青少年举行入团、入队仪式，举行小型组织生活会。2004年4月26日，整修扩建后的团中央机关旧址对外开放。",
+      "text_sha256": "061d8b9ca64502c4e90c9055bd9299737944445b75fddeaf80ead7f1b49bc2e4"
+    },
+    {
+      "street_id": "hengshan",
+      "name_zh": "衡山路",
+      "name_en": "Hengshan Road",
+      "themes_zh": [
+        "近代建筑",
+        "公共生活",
+        "路名沿革"
+      ],
+      "themes_en": [
+        "Architecture",
+        "Public life",
+        "Renaming"
+      ],
+      "matched_record_ids": [
+        "shlib-30a21dbdd3cb",
+        "shlib-99f46953b7ff",
+        "shlib-d0df5f2aa4d2",
+        "shlib-b99003cfa4b5",
+        "shlib-d0a64aa3c784",
+        "shlib-75204a223998",
+        "shlib-7518ee6e05f3",
+        "shlib-827134e9f611"
+      ],
+      "matched_record_count": 8,
+      "text": "街道 / Street: 衡山路 / Hengshan Road\n区域 / District: 徐汇区 / Xuhui\n年代 / Coverage: 1920—至今 / 1920—present\n中文简介: 旧名贝当路。里弄、公寓与国际礼拜堂共同呈现二十世纪上半叶的居住与公共生活。\nEnglish overview: Formerly Avenue Pétain, the road preserves layers of lane housing, apartments and public institutions.\n主题 / Themes: 近代建筑；公共生活；路名沿革 / Architecture; Public life; Renaming\n潘兴公寓。Source URI: http://data.library.sh.cn/entity/architecture/38cfab63w6d20eay\n集雅公寓。Source URI: http://data.library.sh.cn/entity/architecture/2tp3c0ieswi51fnc\n衡山宾馆。Source URI: http://data.library.sh.cn/entity/architecture/gw1pwo5wr8cxegh5\n国际礼拜堂。Source URI: http://data.library.sh.cn/entity/architecture/fnnc0iu27xtxua75\n西湖公寓。Source URI: http://data.library.sh.cn/entity/architecture/5xfzxukdpbdast1a\n衡山路。Source URI: http://data.library.sh.cn/entity/road/5usd0gq8j62kwpv8\n贝当路。Source URI: http://data.library.sh.cn/entity/road/5zvyegqgbscjilqy\n新式里弄。Source URI: http://data.library.sh.cn/entity/architecture/4qdh3v8nebcri481",
+      "text_sha256": "df61e4fd9f725ebe44bd27ed4351e05c1b43f3367331ae1ed152b864ee802809"
+    },
+    {
+      "street_id": "chongqing",
+      "name_zh": "重庆南路",
+      "name_en": "South Chongqing Road",
+      "themes_zh": [
+        "里弄住宅",
+        "城市更新",
+        "路名沿革"
+      ],
+      "themes_en": [
+        "Lane housing",
+        "Urban change",
+        "Renaming"
+      ],
+      "matched_record_ids": [
+        "shlib-cdd978e64e18",
+        "shlib-ad1a4496666a",
+        "shlib-7af4573685de",
+        "shlib-e8a319d8da7b",
+        "shlib-2404c73527ae",
+        "shlib-bac444d3b1da"
+      ],
+      "matched_record_count": 6,
+      "text": "街道 / Street: 重庆南路 / South Chongqing Road\n区域 / District: 黄浦区 / Huangpu\n年代 / Coverage: 1923—至今 / 1923—present\n中文简介: 从灵宝路到重庆南路，万宜坊与重庆公寓记录了近代里弄和集合住宅的发展。\nEnglish overview: From Lingbao Road to South Chongqing Road, lane housing and apartments trace changing residential life.\n主题 / Themes: 里弄住宅；城市更新；路名沿革 / Lane housing; Urban change; Renaming\n重庆公寓。Source URI: http://data.library.sh.cn/entity/architecture/zwa45qyynjq40yth\n卢湾区政府2号楼。Source URI: http://data.library.sh.cn/entity/architecture/bgvnvku5kvedrp77\n万宜坊。Source URI: http://data.library.sh.cn/entity/architecture/0cj4i3tqon7wxrik\n灵宝路。Source URI: http://data.library.sh.cn/entity/road/cwd31q0kv2lj83mr\n重庆南路。Source URI: http://data.library.sh.cn/entity/road/6sfswky0qexlmmq2\n生活书店在上海创办。生活书店1932年7月1日在上海创立，创办人邹韬奋。生活书店的前身是《生活》周刊社。《生活》周刊创刊于1925年10月，本为中华职业教育社机关刊物。后独立经营，邹韬奋任主编，设址在环龙路（今南昌路）环龙别业（今南昌别业）2号。周刊社设有书报代办部，不仅发行本版书刊，还为读者代订外版书刊。1932年以此为基础成立生活书店，店址在陶尔斐斯路（今兴业路）42号，后迁至霞飞路（今淮海中路）桃源坊。1934年再迁到福州路384弄复兴里4号。生活书店成立时邹韬奋为经理，徐伯昕为副经理，胡愈之实际上也是创始人之一。生活书店在业务上分设编辑部、经理部、出版部、营业部、财务部等。抗日战争爆发后，生活书店总店迁住武汉。总店离沪后，上海分店由王泰雷任经理。在福州路378号开设“远东图书杂志公司”（后改名为兄弟图书公司），进行门市供应。书店的编辑、校对、出版、财务等内部工作则秘密设在爱多亚路（今延安东路）河南路口中汇大楼和萨坡赛路（今淡水路）18号。同时，上海分店的重要任务是利用上海的纸张、印刷条件大量印制书籍供应内地。沦陷后，兄弟图书公司曾被日军查封，重新营业后，缩小业务范围，经营文具仪器。以后招股成立新光百货公司，经营百货的批发、零售。新光公司后出盘给一个商人作西药房。抗日战争胜利后，生活书店在上海吕班路（今重庆南路）6号复业，另在迈尔西爱路（今茂名南路）余庆里1号设立编辑部。生活书店总店在武汉时，将总店改为总管理处，后迁至重庆冉家巷16号。1941年后又迁住香港。1948年10月26日，生活、读书、新知三店在香港完成全面合并工作，正式组成生活•读书•新知三联书店。生活书店先后出版的杂志共有29种，早期有《生活》周刊，《新生》周刊，以后又出版了《大众生活》周刊、《永生》周刊、《生活星期刊》、《国民》周刊等。还有《文学》月刊、《世界知识》半月刊、《太白》半月刊、《译文》月刊、《妇女生活》半月刊、《生活教育》半月刊、《光明》半月刊、《中华公论》月刊、《生活知识》半月刊、《新知识》半月刊、《新学识》半月刊、《读书与出版》月刊等。出版图书约有1000多种，成为国民党统治区内坚强的进步文化阵地。其出书内容主要涉及马列主义、哲学、社会科学、政治法律、经济、文化教育、语言文字、文学艺术、历史地理、自然科学等。图书的类型有丛书、丛刊和单行本。丛书丛刊主要有:《世界学术名著译丛》、《青年自学丛书》、《百科小译丛》、《世界知识丛书》、《时事问题丛刊》、《黑白丛书》、《妇女生活丛书》、《创作文库》、《世界文库》、《文学丛书》、《新世纪丛刊》、《少年文库》等20余种。生活书店在经营管理上有一套完整的科学的民主管理制度，对内为合作社组织，是集体所有制性质。合作社章程中原则规定：经营集体化，管理民主化，盈利归全体。领导机构为:理事会、人事委员会和监察委员会，成员由社员大会民主选举产生。1933年生活书店注册时，额定资金为5万元，1937年增加至10万元。职工人数由二十几人发展到500人。书店拥有6万户邮购读者，存款15万元，成为资金来源之一。至1939年，先后在武汉、广州、西安、重庆、长沙、成都、桂林、兰州、贵阳、南昌、昆明、福州等处开设分店55个，发行据点遍及全国14个省份（除新疆、西藏、青海、宁夏外），还在香港、新加坡建立分支店。以后，各地分店纷纷被查封，1941年后，只剩下重庆分店。生活书店建立了不少外围出版机构。在投资合营与化名自营的出版机构中，分一、二、三线出版机构。第一线出版旗帜鲜明的政治读物，第二线偏重于理论性著作和中外文艺作品，第三线主要出版实用书籍和学习参考书。生活书店在上海曾化名的出版机构有：远东图书公司、新生图书服务社、兄弟图书公司、骆驼书店、民主周刊社、燕赵社、致用书店、实用书店、士林书店。在上海投资合营的出版机构有：华夏书店、知识出版社、拂晓社、丘引社、峨嵋出版社、自由出版社、通惠印书馆、南国出版社。",
+      "text_sha256": "daffa697ca6acf52569dd0800680d31f4b88b3b532ded41d010a2db5bfb57e07"
+    },
+    {
+      "street_id": "shaanxi",
+      "name_zh": "陕西南路",
+      "name_en": "South Shaanxi Road",
+      "themes_zh": [
+        "花园住宅",
+        "里弄",
+        "路名沿革"
+      ],
+      "themes_en": [
+        "Garden residences",
+        "Lane housing",
+        "Renaming"
+      ],
+      "matched_record_ids": [
+        "shlib-5a4fe1e023d6",
+        "shlib-827134e9f611",
+        "shlib-49deecf1e57e",
+        "shlib-7d4b7870428e",
+        "shlib-68ec55fe9a46",
+        "shlib-fe45ffdd142f"
+      ],
+      "matched_record_count": 6,
+      "text": "街道 / Street: 陕西南路 / South Shaanxi Road\n区域 / District: 黄浦区 / 徐汇区 / Huangpu / Xuhui\n年代 / Coverage: 1920—至今 / 1920—present\n中文简介: 亚尔培坊与凡尔登花园呈现花园住宅和里弄并置的街区形态，1946年定名陕西南路。\nEnglish overview: Garden residences and lane compounds reveal a mixed residential landscape; the present name dates to 1946.\n主题 / Themes: 花园住宅；里弄；路名沿革 / Garden residences; Lane housing; Renaming\n国泰电影院。Source URI: http://data.library.sh.cn/entity/architecture/5n2kx2v82uuujr6o\n新式里弄。Source URI: http://data.library.sh.cn/entity/architecture/4qdh3v8nebcri481\n凡尔登花园。Source URI: http://data.library.sh.cn/entity/architecture/wyc28hqjou27c33m\n咸阳路。Source URI: http://data.library.sh.cn/entity/road/aufj5pn27d13es83\n陕西南路。Source URI: http://data.library.sh.cn/entity/road/mk7wk2u8y2y4chx8\n新康花园建成。新康花园位于霞飞路（今淮海中路）1273弄1－22号、辣斐德路（今复兴中路）1380弄1－4号，坐落在淮海中路南侧，复兴中路北侧，近毕勋路（今汾阳路）、宝建路（今宝庆路），与上方花园相邻，占地面积19.52亩（13013.3平方米）。建于1916年，原为英籍犹太人开设的新康洋行建造的私人花园，园内有网球场、游泳池等当时一流设施。1933年改建成由15幢公寓组成的建筑群，为公寓式花园里弄。其中有砖木结构2层公寓11幢，建筑面积4169平方米；混合结构5层公寓4幢，平房汽车间及附屋25间，合计建筑面积9318平方米。1937年后曾改名欢乐庭院。1949年9月10日更名为新康花园。总体布置是由15幢公寓组成的建筑群，有1条宽6.5米、南北贯通的主通道和8条5.5米宽、东西尽端的支通道组成总体平面。15幢公寓分南北两部分，布置在主通道两侧。南部即复兴中路1360弄1－4号，为四角对峙的4幢5层混合结构点状型公寓，呈正方形，对角耸立，间距宽大。公寓中间设公用大庭园，汽车间布置在主通道中段。点状型公寓单体平面，一、二、三层每层有2套2室户，共24套，四、五层为2套跃层4室户，计8套；北部即淮海中路1273弄1－22号，为2层砖木结构，西班牙式公寓11幢。该公寓单体平面每层1套4室户，合计22套，每套有独用出入口，房间为横向联列布置，卧室、起居室均在前部，坐北朝南，后部为餐室、厨房间、佣人卧室。起居室部位在中间，左右为卧室，均设内阳台。每幢公寓底层有汽车间，上面是晒台。建筑式样新颖、考究，室内装饰精致，隔音隔热，硬木地板，煤卫设备齐全。寓外环境优雅，门前有小花园，在南北通道两侧花园内，种有高大塔形雪松，北道口有一大块长方形绿化园地，松杉挺立，花木掩映。西班牙式2层公寓分层分户进出，平面布置采用套间式，每户有2套卫生间，起居室前有大阳台。每幢公寓底层有汽车库，房前有小花园。点状式5层公寓单体平面，一至三层每层为两套2室户，四、五层为两套跃层4室户。新康花园建筑式样新颖、室内装饰精致、煤卫设施齐全，室外环境优美，尤其是种植高大的雪松，苍翠挺拔，营造出幽静的氛围。北部5层公寓楼4幢，在复兴中路以北一块方形的土地上，每幢各居一角，大门均面向中央的花坛。花园内主要房间的面积一般为25～35平方米，一至三楼有二、三居室单元，四五层为跃层式4室户，立面的一、二层加横线条，上3层为素面，顶部是平台。南部5层公寓位于陕西南路与复兴中路转角处，由于地形颇不规则，所以总体布置采用双单元点状错列式，弄内有同类型的双单元4层楼公寓16幢，32个单元，每个单元有3室户8套，合计256套。每套一户居住，包括起居室、卧室、餐室、厨房、浴厕间和佣人卧室等。布局分前后两段，前面为主要房间，室内均有壁橱，卧室与浴厕间相通。隔墙为起居室，在起居室南端设有半圆形八角亭相通，起居室与餐室之间设活动拉门分隔。后面是次要房间，即厨房间、佣人卧室及小件套卫生间，以及佣人使用的便梯。公寓在底层入口处均设有小门厅，2层以上不另设门厅，直达扶梯间。每幢公寓均单独设锅炉间、煤仓以及垃圾管道等。公寓间距为1∶0.5～1∶0.8不等，由于利用点状空隙得当，通风采光不受影响，并结合地形布置汽车间和道路，空隙土地植上花卉和树木，四季常青，并有花岗石砌筑的人行小道，纵横在绿茵草坪之间，形成一个优雅的居住环境。著名油画家颜文梁的老宅子在新康花园内。",
+      "text_sha256": "762af31bc9c1c9b7b62f368c430c039a8573dee0489129350d258cd321a2bcad"
+    },
+    {
+      "street_id": "nanjingwest",
+      "name_zh": "南京西路",
+      "name_en": "West Nanjing Road",
+      "themes_zh": [
+        "商业街区",
+        "近代建筑",
+        "公共文化"
+      ],
+      "themes_en": [
+        "Commerce",
+        "Architecture",
+        "Civic culture"
+      ],
+      "matched_record_ids": [
+        "shlib-9d3ed37c3394",
+        "shlib-7db9d318e43e",
+        "shlib-f5966e95200c",
+        "shlib-b88e14270f22",
+        "shlib-f1da43339881",
+        "shlib-1dc8b1dfeb39",
+        "shlib-f7698937c8b8",
+        "shlib-4951dd5191bd",
+        "shlib-bb76ea9da02a"
+      ],
+      "matched_record_count": 9,
+      "text": "街道 / Street: 南京西路 / West Nanjing Road\n区域 / District: 黄浦区 / 静安区 / Huangpu / Jing’an\n年代 / Coverage: 1932—至今 / 1932—present\n中文简介: 旧称静安寺路。静安别墅、国际饭店与公共文化建筑展现商业轴线不断重塑的过程。\nEnglish overview: Formerly Bubbling Well Road, residential compounds, hotels and civic buildings chart a changing commercial axis.\n主题 / Themes: 商业街区；近代建筑；公共文化 / Commerce; Architecture; Civic culture\n泰兴大楼。Source URI: http://data.library.sh.cn/entity/architecture/gemjyjr0xyjft7ya\n静安别墅。Source URI: http://data.library.sh.cn/entity/architecture/ntzw3megdqvc3r65\n上海美术馆。Source URI: http://data.library.sh.cn/entity/architecture/oqk14gxxxqwz1hnt\n国际饭店。Source URI: http://data.library.sh.cn/entity/architecture/hyjs2zl66id4qicl\n南京西路931号公寓。Source URI: http://data.library.sh.cn/entity/architecture/30qzuey8yohwcleq\n南京西路。Source URI: http://data.library.sh.cn/entity/road/o4djhtmu08plgpn8\n南京西路1213弄。Source URI: http://data.library.sh.cn/entity/road/p2vrto0ctbjxilxa\n南京西路1912弄。Source URI: http://data.library.sh.cn/entity/road/mndt06rj64w3x81b\n静安寺路。Source URI: http://data.library.sh.cn/entity/road/13uq8a83nqemxi0j",
+      "text_sha256": "77ad8ca70946690ed86a21df59c725dcfec11fca60c95c10feffecf4e97d2d99"
+    },
+    {
+      "street_id": "duolun",
+      "name_zh": "多伦路",
+      "name_en": "Duolun Road",
+      "themes_zh": [
+        "文化名人",
+        "红色遗迹",
+        "近代建筑"
+      ],
+      "themes_en": [
+        "Literary culture",
+        "Revolutionary sites",
+        "Architecture"
+      ],
+      "matched_record_ids": [
+        "shlib-a01ef1c37be8",
+        "shlib-04fb0f0f234c",
+        "shlib-67bdcfa9155f",
+        "shlib-7df98c592fc4",
+        "shlib-8f6038fcaf78",
+        "shlib-e0735bc58dc1",
+        "shlib-9604ac3b8fe4"
+      ],
+      "matched_record_count": 7,
+      "text": "街道 / Street: 多伦路 / Duolun Road\n区域 / District: 虹口区 / Hongkou\n年代 / Coverage: 1911—至今 / 1911—present\n中文简介: 从窦乐安路到多伦路，鸿德堂、永安里与文化名人遗迹共同构成一条浓缩的近代文化街区。\nEnglish overview: From Darroch Road to Duolun Road, churches, lane housing and literary sites form a concentrated modern cultural district.\n主题 / Themes: 文化名人；红色遗迹；近代建筑 / Literary culture; Revolutionary sites; Architecture\n永安里。Source URI: http://data.library.sh.cn/entity/architecture/g2ojoo45yk34jidd\n鸿德堂。Source URI: http://data.library.sh.cn/entity/architecture/hftnzhlqq0is5kbr\n海军411医院。Source URI: http://data.library.sh.cn/entity/architecture/km61qr2mxtqo2204\n上城集团。Source URI: http://data.library.sh.cn/entity/architecture/32zn5d6bp6sx31bj\n老电影咖啡馆。Source URI: http://data.library.sh.cn/entity/architecture/hwr48siftxi6kh44\n多伦路。Source URI: http://data.library.sh.cn/entity/road/l3khpru4rjursjdv\n窦乐安路。Source URI: http://data.library.sh.cn/entity/road/cliobhmq3g0h3sxn",
+      "text_sha256": "47b062a6ec921944c1183a0e1f4a395ac4e17e88e12e891e91724478c825d7e9"
+    },
+    {
+      "street_id": "sichuan",
+      "name_zh": "四川北路",
+      "name_en": "North Sichuan Road",
+      "themes_zh": [
+        "商业文化",
+        "里弄住宅",
+        "红色遗迹"
+      ],
+      "themes_en": [
+        "Commerce",
+        "Lane housing",
+        "Revolutionary sites"
+      ],
+      "matched_record_ids": [
+        "shlib-7a27bdef19c8",
+        "shlib-0ee9df16c7cd",
+        "shlib-bd143bd99317",
+        "shlib-ab7183759acf",
+        "shlib-18293799f816",
+        "shlib-6b2a5be036ad",
+        "shlib-028d3e189537",
+        "shlib-a01ef1c37be8",
+        "shlib-97b3ff831241"
+      ],
+      "matched_record_count": 9,
+      "text": "街道 / Street: 四川北路 / North Sichuan Road\n区域 / District: 虹口区 / Hongkou\n年代 / Coverage: 1925—至今 / 1925—present\n中文简介: 北四川路更名为四川北路；永安里与大桥大楼连接起商业、居住和革命活动的多重历史。\nEnglish overview: Renamed from North Szechuen Road, the street links commerce and residential life with sites of revolutionary activity.\n主题 / Themes: 商业文化；里弄住宅；红色遗迹 / Commerce; Lane housing; Revolutionary sites\n大桥大楼。Source URI: http://data.library.sh.cn/entity/architecture/7irjv3wsl6ls0ak8\n北川公寓。Source URI: http://data.library.sh.cn/entity/architecture/4plwh24avz4v6viq\n虹口大楼。Source URI: http://data.library.sh.cn/entity/architecture/g5pujurcrxdxtrpx\n丰乐里。Source URI: http://data.library.sh.cn/entity/architecture/6n1ohdv3yplel7bx\n住宅。Source URI: http://data.library.sh.cn/entity/architecture/0f0tlc6iiw85yvf4\n北四川路。Source URI: http://data.library.sh.cn/entity/road/s8pyhxbkv5tq13bl\n四川北路。Source URI: http://data.library.sh.cn/entity/road/tog5ogoxxhb7ml3s\n永安里。Source URI: http://data.library.sh.cn/entity/architecture/g2ojoo45yk34jidd\n新知书店；新知書店。1935年8月创办，中国共产党领导，钱俊瑞、徐雪寒主持，姜君辰等负责编辑。以出版社会科学论著为主。1937年八一三事变后，总店迁内地，上海设办事处，以实学书局、远方书店名义出书。出版苏联文学丛书。派员在苏北开设大众书店。太平洋战争爆发后，撤往苏北，汤季宏、蒋建忠、孙群等负责，协助根据地在上海采办军需物质。1944年10月，遭汪伪破坏，人员被捕，停止活动。1947年春，在四川北路8号恢复上海门市部。出版《新知丛书》《传记丛书》《新世纪文学译丛》《新认识丛书》《国际现势丛书》。7月，遭淞沪警备司令部查抄，改永年书局，门市部转让给开明书店。总计出书200余种，有《中国货币制度何处去》《意阿战争与第二次世界大战》《中国农村社会性质论战》《通俗经济学》《大众政治经济学》《农村经济基本知识》《中国农村经济常识》《中国经济问题讲话》《苏联文学选集》《中国古代社会史》《中国思想通史》《中国近百年史》《鲁迅传》，翻印《中国通史简编》；期刊近10种。1948年10月，在香港与生活书店、读书出版社合并为三联书店。(《上海通志》)",
+      "text_sha256": "c527497e6e39e5c8da49e235c6f2e47b295e9bb51c688b3c83fa264fff89d9ed"
+    },
+    {
+      "street_id": "changyang",
+      "name_zh": "长阳路",
+      "name_en": "Changyang Road",
+      "themes_zh": [
+        "犹太难民",
+        "公共建筑",
+        "历史街区"
+      ],
+      "themes_en": [
+        "Jewish refuge",
+        "Civic buildings",
+        "Historic district"
+      ],
+      "matched_record_ids": [
+        "shlib-30a78fdf0b85",
+        "shlib-0c2b34f4f2d0",
+        "shlib-4427860adc5c",
+        "shlib-b8bd3787c403"
+      ],
+      "matched_record_count": 4,
+      "text": "街道 / Street: 长阳路 / Changyang Road\n区域 / District: 虹口区 / 杨浦区 / Hongkou / Yangpu\n年代 / Coverage: 1903—至今 / 1903—present\n中文简介: 旧名华德路。提篮桥监狱与摩西会堂记录了公共治理、犹太社群与战时避难历史。\nEnglish overview: Formerly Ward Road, the prison and Ohel Moishe Synagogue connect civic administration, Jewish life and wartime refuge.\n主题 / Themes: 犹太难民；公共建筑；历史街区 / Jewish refuge; Civic buildings; Historic district\n提蓝桥监狱。Source URI: http://data.library.sh.cn/entity/architecture/a7jx3tay3qdalrnj\n摩西会堂。Source URI: http://data.library.sh.cn/entity/architecture/ra83gxofqkz0e6y3\n华德路。Source URI: http://data.library.sh.cn/entity/road/ncst8y0y6mn1t57t\n长阳路。Source URI: http://data.library.sh.cn/entity/road/6pvnxbwszmvzu0su",
+      "text_sha256": "e8acbb102104bb094dcc15bd5cda3558b5b4ec0a5b214a16cb389f4929ef9dcd"
+    },
+    {
+      "street_id": "bund",
+      "name_zh": "外滩 · 中山东一路",
+      "name_en": "The Bund · East Zhongshan No. 1 Road",
+      "themes_zh": [
+        "城市天际线",
+        "金融建筑",
+        "滨江空间"
+      ],
+      "themes_en": [
+        "Skyline",
+        "Financial architecture",
+        "Waterfront"
+      ],
+      "matched_record_ids": [
+        "shlib-7106d165dcd0"
+      ],
+      "matched_record_count": 1,
+      "text": "街道 / Street: 外滩 · 中山东一路 / The Bund · East Zhongshan No. 1 Road\n区域 / District: 黄浦区 / Huangpu\n年代 / Coverage: 1869—至今 / 1869—present\n中文简介: 从江岸交通空间到近代金融与公共建筑群，外滩的街墙和天际线记录了上海城市中心的形成。\nEnglish overview: From riverfront infrastructure to a financial and civic ensemble, the Bund records the making of Shanghai’s urban centre.\n主题 / Themes: 城市天际线；金融建筑；滨江空间 / Skyline; Financial architecture; Waterfront\n福州大楼。Source URI: http://data.library.sh.cn/entity/architecture/38otulbla5qjit8u",
+      "text_sha256": "06cb9b2f5fe90df52dedbd12106e6dc0a319a7b33439ad99636bef46618f5263"
+    }
+  ],
+  "evaluation_queries": [
+    {
+      "id": "zh01",
+      "language": "zh",
+      "query": "法租界道路更名与都市文化",
+      "expected": [
+        "xiafei"
+      ]
+    },
+    {
+      "id": "zh02",
+      "language": "zh",
+      "query": "上海犹太难民与会堂",
+      "expected": [
+        "changyang"
+      ]
+    },
+    {
+      "id": "zh03",
+      "language": "zh",
+      "query": "虹口文学文化街区",
+      "expected": [
+        "duolun"
+      ]
+    },
+    {
+      "id": "zh04",
+      "language": "zh",
+      "query": "外滩金融建筑与滨江天际线",
+      "expected": [
+        "bund"
+      ]
+    },
+    {
+      "id": "zh05",
+      "language": "zh",
+      "query": "静安商业旅馆与公共文化",
+      "expected": [
+        "nanjingwest"
+      ]
+    },
+    {
+      "id": "zh06",
+      "language": "zh",
+      "query": "贝当路国际礼拜堂和公寓生活",
+      "expected": [
+        "hengshan"
+      ]
+    },
+    {
+      "id": "zh07",
+      "language": "zh",
+      "query": "里弄与集合住宅的发展",
+      "expected": [
+        "chongqing"
+      ]
+    },
+    {
+      "id": "zh08",
+      "language": "zh",
+      "query": "花园住宅与亚尔培坊",
+      "expected": [
+        "shaanxi"
+      ]
+    },
+    {
+      "id": "zh09",
+      "language": "zh",
+      "query": "四川北路商业与革命活动",
+      "expected": [
+        "sichuan"
+      ]
+    },
+    {
+      "id": "zh10",
+      "language": "zh",
+      "query": "霞飞路出版书局和美术展览",
+      "expected": [
+        "xiafei"
+      ]
+    },
+    {
+      "id": "en01",
+      "language": "en",
+      "query": "Jewish refugees and a synagogue on Ward Road",
+      "expected": [
+        "changyang"
+      ]
+    },
+    {
+      "id": "en02",
+      "language": "en",
+      "query": "literary culture and revolutionary sites in Hongkou",
+      "expected": [
+        "duolun"
+      ]
+    },
+    {
+      "id": "en03",
+      "language": "en",
+      "query": "riverfront finance architecture and Shanghai skyline",
+      "expected": [
+        "bund"
+      ]
+    },
+    {
+      "id": "en04",
+      "language": "en",
+      "query": "Bubbling Well Road commerce hotels and civic culture",
+      "expected": [
+        "nanjingwest"
+      ]
+    },
+    {
+      "id": "en05",
+      "language": "en",
+      "query": "Avenue Petain apartments church and public life",
+      "expected": [
+        "hengshan"
+      ]
+    },
+    {
+      "id": "en06",
+      "language": "en",
+      "query": "lane housing and modern apartment development",
+      "expected": [
+        "chongqing"
+      ]
+    },
+    {
+      "id": "en07",
+      "language": "en",
+      "query": "garden residences and King Albert Lane",
+      "expected": [
+        "shaanxi"
+      ]
+    },
+    {
+      "id": "en08",
+      "language": "en",
+      "query": "commercial street worker housing and revolutionary history",
+      "expected": [
+        "sichuan"
+      ]
+    },
+    {
+      "id": "en09",
+      "language": "en",
+      "query": "Avenue Joffre publishing art and metropolitan culture",
+      "expected": [
+        "xiafei"
+      ]
+    },
+    {
+      "id": "en10",
+      "language": "en",
+      "query": "Cathay Hotel signal tower and Huangpu River",
+      "expected": [
+        "bund"
+      ]
+    },
+    {
+      "id": "cross01",
+      "language": "zh-en",
+      "query": "提篮桥 Jewish refuge history",
+      "expected": [
+        "changyang"
+      ]
+    },
+    {
+      "id": "cross02",
+      "language": "zh-en",
+      "query": "窦乐安路 literary district",
+      "expected": [
+        "duolun"
+      ]
+    },
+    {
+      "id": "cross03",
+      "language": "zh-en",
+      "query": "外滩 waterfront infrastructure",
+      "expected": [
+        "bund"
+      ]
+    },
+    {
+      "id": "cross04",
+      "language": "zh-en",
+      "query": "静安寺路 Bubbling Well Road",
+      "expected": [
+        "nanjingwest"
+      ]
+    },
+    {
+      "id": "cross05",
+      "language": "zh-en",
+      "query": "贝当路 Avenue Petain",
+      "expected": [
+        "hengshan"
+      ]
+    },
+    {
+      "id": "cross06",
+      "language": "zh-en",
+      "query": "灵宝路 lane housing",
+      "expected": [
+        "chongqing"
+      ]
+    },
+    {
+      "id": "cross07",
+      "language": "zh-en",
+      "query": "亚尔培坊 garden residences",
+      "expected": [
+        "shaanxi"
+      ]
+    },
+    {
+      "id": "cross08",
+      "language": "zh-en",
+      "query": "北四川路 commercial culture",
+      "expected": [
+        "sichuan"
+      ]
+    },
+    {
+      "id": "cross09",
+      "language": "zh-en",
+      "query": "霞飞路 Avenue Joffre",
+      "expected": [
+        "xiafei"
+      ]
+    },
+    {
+      "id": "cross10",
+      "language": "zh-en",
+      "query": "华德路 Ward Road prison synagogue",
+      "expected": [
+        "changyang"
+      ]
+    }
+  ]
+}
